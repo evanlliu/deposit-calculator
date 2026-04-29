@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>定期存款年利率计算器</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      background: linear-gradient(135deg, #f4f7fb 0%, #e9eef7 100%);
+      color: #1f2937;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .app {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      color: #111827;
+    }
+
+    .header p {
+      margin: 0;
+      color: #6b7280;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .calculator-card {
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      padding: 26px;
+    }
+
+    .mode-box {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .mode-btn {
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #374151;
+      padding: 11px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .mode-btn.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .field label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      color: #374151;
+      margin-bottom: 9px;
+      font-weight: 600;
+    }
+
+    .field .hint {
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    input, select {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      padding: 0 12px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    select {
+      max-width: 110px;
+      flex-shrink: 0;
+    }
+
+    .disabled-input {
+      background: #eef2ff;
+      border-color: #93c5fd;
+      color: #1d4ed8;
+      font-weight: 700;
+    }
+
+    .base-days {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 16px;
+      color: #475569;
+      font-size: 14px;
+    }
+
+    .base-days select {
+      max-width: 160px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 14px;
+      padding: 13px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .primary-btn {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.24);
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .secondary-btn {
+      background: #eef2ff;
+      color: #1d4ed8;
+      min-width: 120px;
+    }
+
+    .result {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .result-item {
+      background: #0f172a;
+      color: #fff;
+      border-radius: 18px;
+      padding: 18px;
+      min-height: 112px;
+    }
+
+    .result-item span {
+      display: block;
+      color: #cbd5e1;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .result-item strong {
+      display: block;
+      font-size: 22px;
+      word-break: break-word;
+    }
+
+    .formula {
+      margin-top: 18px;
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.7;
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .message {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      display: none;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .message.error {
+      display: block;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .message.success {
+      display: block;
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
+    .example-box {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .example-btn {
+      background: #f3f4f6;
+      color: #374151;
+      padding: 9px 13px;
+      font-size: 13px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 14px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .calculator-card {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      .grid,
+      .result {
+        grid-template-columns: 1fr;
+      }
+
+      .base-days {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .base-days select {
+        max-width: none;
+      }
+
+      .actions button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <h1>定期存款年利率计算器</h1>
+      <p>支持正向计算和反向推算：年利率、本金、期限、利息都可以作为未知项反推。</p>
+    </div>
+
+    <div class="calculator-card">
+      <div class="mode-box">
+        <button class="mode-btn active" data-target="rate">反推年利率</button>
+        <button class="mode-btn" data-target="interest">计算利息</button>
+        <button class="mode-btn" data-target="principal">反推本金</button>
+        <button class="mode-btn" data-target="term">反推期限</button>
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="principal">
+            本金
+            <span class="hint">Principal</span>
+          </label>
+          <input id="principal" type="number" min="0" step="0.01" placeholder="例如：100000" />
+        </div>
+
+        <div class="field">
+          <label for="term">
+            存款期限
+            <span class="hint">Term</span>
+          </label>
+          <div class="input-row">
+            <input id="term" type="number" min="0" step="0.01" placeholder="例如：35" />
+            <select id="termUnit">
+              <option value="day">天</option>
+              <option value="month">月</option>
+              <option value="year">年</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rate">
+            年利率
+            <span class="hint">Annual Rate %</span>
+          </label>
+          <input id="rate" type="number" min="0" step="0.0001" placeholder="例如：2.35" />
+        </div>
+
+        <div class="field">
+          <label for="interest">
+            利息
+            <span class="hint">Interest</span>
+          </label>
+          <input id="interest" type="number" min="0" step="0.01" placeholder="例如：225.34" />
+        </div>
+      </div>
+
+      <div class="base-days">
+        <div>
+          年化天数口径：银行常见按 365 天，也有产品按 360 天。你可以根据银行说明切换。
+        </div>
+        <select id="baseDays">
+          <option value="365">365 天</option>
+          <option value="360">360 天</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button class="primary-btn" id="calculateBtn">开始计算</button>
+        <button class="secondary-btn" id="clearBtn">清空</button>
+      </div>
+
+      <div class="example-box">
+        <button class="example-btn" data-example="rate">示例：本金+期限+利息 → 年利率</button>
+        <button class="example-btn" data-example="interest">示例：本金+期限+年利率 → 利息</button>
+        <button class="example-btn" data-example="term">示例：本金+利息+年利率 → 期限</button>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div class="result">
+        <div class="result-item">
+          <span>年利率</span>
+          <strong id="resultRate">-</strong>
+        </div>
+        <div class="result-item">
+          <span>利息</span>
+          <strong id="resultInterest">-</strong>
+        </div>
+        <div class="result-item">
+          <span>本息合计</span>
+          <strong id="resultTotal">-</strong>
+        </div>
+      </div>
+
+      <div class="formula">
+        计算公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />
+        例如：本金 100,000，35 天，利息 225.34，年化 365 天，则年利率 ≈ 2.35%。
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+      let currentTarget = "rate";
+
+      function numberValue(selector) {
+        const raw = $(selector).val();
+        if (raw === "" || raw === null || raw === undefined) return null;
+        const value = Number(raw);
+        return Number.isFinite(value) ? value : null;
+      }
+
+      function toDays(term, unit) {
+        if (term === null) return null;
+        if (unit === "day") return term;
+        if (unit === "month") return term * 30;
+        if (unit === "year") return term * 365;
+        return term;
+      }
+
+      function fromDays(days, unit) {
+        if (unit === "day") return days;
+        if (unit === "month") return days / 30;
+        if (unit === "year") return days / 365;
+        return days;
+      }
+
+      function formatMoney(value) {
+        if (!Number.isFinite(value)) return "-";
+        return value.toLocaleString("zh-CN", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      }
+
+      function formatRate(value) {
+        if (!Number.isFinite(value)) return "-";
+        return value.toFixed(4).replace(/\.0+$/, "") + "%";
+      }
+
+      function formatTerm(value, unit) {
+        if (!Number.isFinite(value)) return "-";
+        const unitText = unit === "day" ? "天" : unit === "month" ? "个月" : "年";
+        return value.toFixed(2).replace(/\.00$/, "") + " " + unitText;
+      }
+
+      function showMessage(type, text) {
+        const $message = $("#message");
+        $message.removeClass("error success").addClass(type).text(text);
+      }
+
+      function clearMessage() {
+        $("#message").removeClass("error success").hide().text("");
+      }
+
+      function setTarget(target) {
+        currentTarget = target;
+        $(".mode-btn").removeClass("active");
+        $('.mode-btn[data-target="' + target + '"]').addClass("active");
+
+        $("#principal, #term, #rate, #interest").removeClass("disabled-input").prop("readonly", false);
+        $("#" + target).addClass("disabled-input").prop("readonly", true).val("");
+
+        const placeholderMap = {
+          rate: "将自动反推年利率",
+          interest: "将自动计算利息",
+          principal: "将自动反推本金",
+          term: "将自动反推期限"
+        };
+        $("#" + target).attr("placeholder", placeholderMap[target]);
+      }
+
+      function validatePositive(name, value) {
+        if (value === null || value <= 0) {
+          showMessage("error", "请填写有效的" + name + "，必须大于 0。");
+          return false;
+        }
+        return true;
+      }
+
+      function calculate() {
+        clearMessage();
+
+        const principal = numberValue("#principal");
+        const term = numberValue("#term");
+        const ratePercent = numberValue("#rate");
+        const interest = numberValue("#interest");
+        const termUnit = $("#termUnit").val();
+        const baseDays = Number($("#baseDays").val());
+        const days = toDays(term, termUnit);
+
+        let resultPrincipal = principal;
+        let resultDays = days;
+        let resultRatePercent = ratePercent;
+        let resultInterest = interest;
+
+        if (currentTarget === "rate") {
+          if (!validatePositive("本金", principal)) return;
+          if (!validatePositive("存款期限", days)) return;
+          if (!validatePositive("利息", interest)) return;
+          resultRatePercent = interest / principal / days * baseDays * 100;
+        }
+
+        if (currentTarget === "interest") {
+          if (!validatePositive("本金", principal)) return;
+          if (!validatePositive("存款期限", days)) return;
+          if (!validatePositive("年利率", ratePercent)) return;
+          resultInterest = principal * (ratePercent / 100) * days / baseDays;
+        }
+
+        if (currentTarget === "principal") {
+          if (!validatePositive("存款期限", days)) return;
+          if (!validatePositive("年利率", ratePercent)) return;
+          if (!validatePositive("利息", interest)) return;
+          resultPrincipal = interest / (ratePercent / 100) / days * baseDays;
+        }
+
+        if (currentTarget === "term") {
+          if (!validatePositive("本金", principal)) return;
+          if (!validatePositive("年利率", ratePercent)) return;
+          if (!validatePositive("利息", interest)) return;
+          resultDays = interest / principal / (ratePercent / 100) * baseDays;
+          const convertedTerm = fromDays(resultDays, termUnit);
+          $("#term").val(Number(convertedTerm.toFixed(4)));
+        }
+
+        if (currentTarget === "rate") {
+          $("#rate").val(Number(resultRatePercent.toFixed(6)));
+        }
+        if (currentTarget === "interest") {
+          $("#interest").val(Number(resultInterest.toFixed(2)));
+        }
+        if (currentTarget === "principal") {
+          $("#principal").val(Number(resultPrincipal.toFixed(2)));
+        }
+
+        const total = resultPrincipal + resultInterest;
+
+        $("#resultRate").text(formatRate(resultRatePercent));
+        $("#resultInterest").text(formatMoney(resultInterest));
+        $("#resultTotal").text(formatMoney(total));
+
+        const termText = currentTarget === "term" ? "，反推期限为 " + formatTerm(fromDays(resultDays, termUnit), termUnit) : "";
+        showMessage("success", "计算完成" + termText + "。结果按单利估算，实际以银行产品规则为准。");
+      }
+
+      function clearAll() {
+        $("#principal, #term, #rate, #interest").val("");
+        $("#resultRate, #resultInterest, #resultTotal").text("-");
+        clearMessage();
+      }
+
+      $(".mode-btn").on("click", function () {
+        setTarget($(this).data("target"));
+        $("#resultRate, #resultInterest, #resultTotal").text("-");
+        clearMessage();
+      });
+
+      $("#calculateBtn").on("click", calculate);
+      $("#clearBtn").on("click", clearAll);
+
+      $("input, select").on("keydown", function (event) {
+        if (event.key === "Enter") {
+          calculate();
+        }
+      });
+
+      $(".example-btn").on("click", function () {
+        const example = $(this).data("example");
+        clearAll();
+
+        if (example === "rate") {
+          setTarget("rate");
+          $("#principal").val(100000);
+          $("#term").val(35);
+          $("#termUnit").val("day");
+          $("#interest").val(225.34);
+        }
+
+        if (example === "interest") {
+          setTarget("interest");
+          $("#principal").val(100000);
+          $("#term").val(35);
+          $("#termUnit").val("day");
+          $("#rate").val(2.35);
+        }
+
+        if (example === "term") {
+          setTarget("term");
+          $("#principal").val(100000);
+          $("#rate").val(2.35);
+          $("#interest").val(225.34);
+          $("#termUnit").val("day");
+        }
+
+        calculate();
+      });
+
+      setTarget("rate");
+    });
+  </script>
+</body>
+</html>
