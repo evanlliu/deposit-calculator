@@ -2,12 +2,29 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>定期存款年利率计算器</title>
+  <!-- iOS / PWA：添加到主屏幕后以独立 App 方式打开，不显示 Safari 地址栏 -->
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="application-name" content="定存计算器" />
+  <meta name="apple-mobile-web-app-title" content="定存计算器" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
     }
 
     body {
@@ -16,7 +33,14 @@
       background: linear-gradient(135deg, #f4f7fb 0%, #e9eef7 100%);
       color: #1f2937;
       min-height: 100vh;
-      padding: 24px;
+      min-height: 100dvh;
+      padding: calc(24px + env(safe-area-inset-top)) calc(24px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(24px + env(safe-area-inset-left));
+      -webkit-text-size-adjust: 100%;
+      overscroll-behavior-y: none;
+    }
+
+    .standalone-mode body {
+      min-height: 100dvh;
     }
 
     .app {
@@ -271,7 +295,7 @@
 
     @media (max-width: 720px) {
       body {
-        padding: 14px;
+        padding: calc(14px + env(safe-area-inset-top)) calc(14px + env(safe-area-inset-right)) calc(14px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
       }
 
       .header h1 {
@@ -405,6 +429,19 @@
   </div>
 
   <script>
+    const isStandaloneMode = window.navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
+    if (isStandaloneMode) {
+      document.documentElement.classList.add("standalone-mode");
+    }
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js").catch(function () {
+          // 本地 file:// 打开时会注册失败；部署到 https 后会正常工作。
+        });
+      });
+    }
+
     $(function () {
       let currentTarget = "rate";
 
