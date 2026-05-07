@@ -16,7 +16,6 @@
   <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png" />
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -34,7 +33,7 @@
       color: #1f2937;
       min-height: 100vh;
       min-height: 100dvh;
-      padding: calc(24px + env(safe-area-inset-top)) calc(24px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(24px + env(safe-area-inset-left));
+      padding: calc(18px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left));
       -webkit-text-size-adjust: 100%;
       overscroll-behavior-y: none;
     }
@@ -50,13 +49,35 @@
 
     .header {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
     }
 
     .header h1 {
-      margin: 0 0 10px;
+      margin: 0;
       font-size: 30px;
       color: #111827;
+    }
+
+    .version-badge {
+      display: inline-flex;
+      align-items: center;
+      height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
     }
 
     .header p {
@@ -70,13 +91,13 @@
       background: #ffffff;
       border-radius: 22px;
       box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-      padding: 26px;
+      padding: 22px;
     }
 
     .mode-box {
       display: flex;
-      gap: 12px;
-      margin-bottom: 22px;
+      gap: 10px;
+      margin-bottom: 18px;
       flex-wrap: wrap;
     }
 
@@ -84,7 +105,7 @@
       border: 1px solid #d1d5db;
       background: #fff;
       color: #374151;
-      padding: 11px 16px;
+      padding: 10px 14px;
       border-radius: 999px;
       cursor: pointer;
       font-size: 14px;
@@ -101,14 +122,14 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      gap: 14px;
     }
 
     .field {
       background: #f9fafb;
       border: 1px solid #e5e7eb;
       border-radius: 16px;
-      padding: 16px;
+      padding: 14px;
     }
 
     .field label {
@@ -132,6 +153,38 @@
       display: flex;
       gap: 8px;
       align-items: center;
+    }
+
+    .date-range {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .date-field {
+      min-width: 0;
+    }
+
+    .date-field span {
+      display: block;
+      margin-bottom: 5px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .date-field input {
+      height: 40px;
+      font-size: 14px;
+      padding: 0 10px;
+    }
+
+    .date-note {
+      margin-top: 8px;
+      color: #94a3b8;
+      font-size: 12px;
+      line-height: 1.5;
     }
 
     input, select {
@@ -164,12 +217,12 @@
     }
 
     .base-days {
-      margin-top: 18px;
+      margin-top: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 14px 16px;
+      padding: 12px 14px;
       background: #f8fafc;
       border: 1px dashed #cbd5e1;
       border-radius: 16px;
@@ -184,7 +237,7 @@
     .actions {
       display: flex;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 18px;
       flex-wrap: wrap;
     }
 
@@ -192,7 +245,7 @@
       border: none;
       cursor: pointer;
       border-radius: 14px;
-      padding: 13px 20px;
+      padding: 12px 18px;
       font-size: 15px;
       font-weight: 700;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -217,18 +270,18 @@
     }
 
     .result {
-      margin-top: 24px;
+      margin-top: 18px;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+      gap: 12px;
     }
 
     .result-item {
       background: #0f172a;
       color: #fff;
       border-radius: 18px;
-      padding: 18px;
-      min-height: 112px;
+      padding: 16px;
+      min-height: 96px;
     }
 
     .result-item span {
@@ -245,13 +298,13 @@
     }
 
     .formula {
-      margin-top: 18px;
+      margin-top: 14px;
       color: #64748b;
       font-size: 13px;
       line-height: 1.7;
       background: #f8fafc;
       border-radius: 14px;
-      padding: 14px 16px;
+      padding: 12px 14px;
     }
 
     .message {
@@ -278,7 +331,7 @@
     }
 
     .example-box {
-      margin-top: 20px;
+      margin-top: 16px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
@@ -299,17 +352,44 @@
       }
 
       .header h1 {
-        font-size: 24px;
+        font-size: 23px;
+      }
+
+      .header p {
+        font-size: 13px;
       }
 
       .calculator-card {
-        padding: 18px;
+        padding: 14px;
         border-radius: 18px;
+      }
+
+      .mode-box {
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .mode-btn {
+        flex: 1 1 calc(50% - 8px);
+        padding: 9px 8px;
+      }
+
+      .field {
+        padding: 12px;
+      }
+
+      .date-range {
+        grid-template-columns: 1fr;
       }
 
       .grid,
       .result {
         grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .result-item {
+        min-height: auto;
       }
 
       .base-days {
@@ -330,7 +410,10 @@
 <body>
   <div class="app">
     <div class="header">
-      <h1>定期存款年利率计算器</h1>
+      <div class="title-row">
+        <h1>定期存款年利率计算器</h1>
+        <span class="version-badge" id="appVersion">v1.2.0</span>
+      </div>
       <p>支持正向计算和反向推算：年利率、本金、期限、利息都可以作为未知项反推。</p>
     </div>
 
@@ -364,6 +447,17 @@
               <option value="year">年</option>
             </select>
           </div>
+          <div class="date-range" aria-label="根据开始日期和结束日期自动计算存款天数">
+            <div class="date-field">
+              <span>开始日期</span>
+              <input id="startDate" type="date" />
+            </div>
+            <div class="date-field">
+              <span>结束日期</span>
+              <input id="endDate" type="date" />
+            </div>
+          </div>
+          <div class="date-note">选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入上方。</div>
         </div>
 
         <div class="field">
@@ -429,6 +523,7 @@
   </div>
 
   <script>
+    const APP_VERSION = "v1.2.0";
     const isStandaloneMode = window.navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
     if (isStandaloneMode) {
       document.documentElement.classList.add("standalone-mode");
@@ -436,17 +531,28 @@
 
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
-        navigator.serviceWorker.register("./sw.js").catch(function () {
+        navigator.serviceWorker.register("./sw.js").then(function (registration) {
+          registration.update().catch(function () {});
+        }).catch(function () {
           // 本地 file:// 打开时会注册失败；部署到 https 后会正常工作。
         });
       });
     }
 
-    $(function () {
+    document.addEventListener("DOMContentLoaded", function () {
       let currentTarget = "rate";
 
+      const $ = function (selector) {
+        return document.querySelector(selector);
+      };
+
+      const $$ = function (selector) {
+        return Array.from(document.querySelectorAll(selector));
+      };
+
       function numberValue(selector) {
-        const raw = $(selector).val();
+        const element = $(selector);
+        const raw = element ? element.value : "";
         if (raw === "" || raw === null || raw === undefined) return null;
         const value = Number(raw);
         return Number.isFinite(value) ? value : null;
@@ -467,6 +573,41 @@
         return days;
       }
 
+      function parseDateInput(value) {
+        if (!value) return null;
+        const parts = value.split("-").map(Number);
+        if (parts.length !== 3 || parts.some(function (part) { return !Number.isFinite(part); })) return null;
+        return Date.UTC(parts[0], parts[1] - 1, parts[2]);
+      }
+
+      function calculateDaysFromDateRange(options) {
+        const startDate = parseDateInput($("#startDate").value);
+        const endDate = parseDateInput($("#endDate").value);
+        const shouldShowMessage = options && options.showMessage;
+
+        if (startDate === null || endDate === null) return null;
+
+        const oneDay = 24 * 60 * 60 * 1000;
+        const days = Math.round((endDate - startDate) / oneDay);
+
+        if (days <= 0) {
+          $("#term").value = "";
+          if (shouldShowMessage) {
+            resetResults();
+            showMessage("error", "结束日期必须晚于开始日期，才能计算有效的存款天数。");
+          }
+          return null;
+        }
+
+        $("#term").value = days;
+        $("#termUnit").value = "day";
+        resetResults();
+        if (shouldShowMessage) {
+          showMessage("success", "已根据开始日期和结束日期自动填入存款期限：" + days + " 天。");
+        }
+        return days;
+      }
+
       function formatMoney(value) {
         if (!Number.isFinite(value)) return "-";
         return value.toLocaleString("zh-CN", {
@@ -475,33 +616,58 @@
         });
       }
 
+      function trimTrailingZeros(text) {
+        return text.replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.0+$/, "");
+      }
+
       function formatRate(value) {
         if (!Number.isFinite(value)) return "-";
-        return value.toFixed(4).replace(/\.0+$/, "") + "%";
+        return trimTrailingZeros(value.toFixed(4)) + "%";
       }
 
       function formatTerm(value, unit) {
         if (!Number.isFinite(value)) return "-";
         const unitText = unit === "day" ? "天" : unit === "month" ? "个月" : "年";
-        return value.toFixed(2).replace(/\.00$/, "") + " " + unitText;
+        return trimTrailingZeros(value.toFixed(2)) + " " + unitText;
       }
 
       function showMessage(type, text) {
-        const $message = $("#message");
-        $message.removeClass("error success").addClass(type).text(text);
+        const message = $("#message");
+        message.classList.remove("error", "success");
+        message.classList.add(type);
+        message.textContent = text;
+        message.hidden = false;
       }
 
       function clearMessage() {
-        $("#message").removeClass("error success").hide().text("");
+        const message = $("#message");
+        message.classList.remove("error", "success");
+        message.textContent = "";
+        message.hidden = true;
+      }
+
+      function resetResults() {
+        $("#resultRate").textContent = "-";
+        $("#resultInterest").textContent = "-";
+        $("#resultTotal").textContent = "-";
       }
 
       function setTarget(target) {
         currentTarget = target;
-        $(".mode-btn").removeClass("active");
-        $('.mode-btn[data-target="' + target + '"]').addClass("active");
+        $$(".mode-btn").forEach(function (button) {
+          button.classList.toggle("active", button.dataset.target === target);
+        });
 
-        $("#principal, #term, #rate, #interest").removeClass("disabled-input").prop("readonly", false);
-        $("#" + target).addClass("disabled-input").prop("readonly", true).val("");
+        ["#principal", "#term", "#rate", "#interest"].forEach(function (selector) {
+          const input = $(selector);
+          input.classList.remove("disabled-input");
+          input.readOnly = false;
+        });
+
+        const targetInput = $("#" + target);
+        targetInput.classList.add("disabled-input");
+        targetInput.readOnly = true;
+        targetInput.value = "";
 
         const placeholderMap = {
           rate: "将自动反推年利率",
@@ -509,7 +675,7 @@
           principal: "将自动反推本金",
           term: "将自动反推期限"
         };
-        $("#" + target).attr("placeholder", placeholderMap[target]);
+        targetInput.placeholder = placeholderMap[target];
       }
 
       function validatePositive(name, value) {
@@ -527,8 +693,8 @@
         const term = numberValue("#term");
         const ratePercent = numberValue("#rate");
         const interest = numberValue("#interest");
-        const termUnit = $("#termUnit").val();
-        const baseDays = Number($("#baseDays").val());
+        const termUnit = $("#termUnit").value;
+        const baseDays = Number($("#baseDays").value);
         const days = toDays(term, termUnit);
 
         let resultPrincipal = principal;
@@ -563,82 +729,103 @@
           if (!validatePositive("利息", interest)) return;
           resultDays = interest / principal / (ratePercent / 100) * baseDays;
           const convertedTerm = fromDays(resultDays, termUnit);
-          $("#term").val(Number(convertedTerm.toFixed(4)));
+          $("#term").value = Number(convertedTerm.toFixed(4));
         }
 
         if (currentTarget === "rate") {
-          $("#rate").val(Number(resultRatePercent.toFixed(6)));
+          $("#rate").value = Number(resultRatePercent.toFixed(6));
         }
         if (currentTarget === "interest") {
-          $("#interest").val(Number(resultInterest.toFixed(2)));
+          $("#interest").value = Number(resultInterest.toFixed(2));
         }
         if (currentTarget === "principal") {
-          $("#principal").val(Number(resultPrincipal.toFixed(2)));
+          $("#principal").value = Number(resultPrincipal.toFixed(2));
         }
 
         const total = resultPrincipal + resultInterest;
 
-        $("#resultRate").text(formatRate(resultRatePercent));
-        $("#resultInterest").text(formatMoney(resultInterest));
-        $("#resultTotal").text(formatMoney(total));
+        $("#resultRate").textContent = formatRate(resultRatePercent);
+        $("#resultInterest").textContent = formatMoney(resultInterest);
+        $("#resultTotal").textContent = formatMoney(total);
 
         const termText = currentTarget === "term" ? "，反推期限为 " + formatTerm(fromDays(resultDays, termUnit), termUnit) : "";
         showMessage("success", "计算完成" + termText + "。结果按单利估算，实际以银行产品规则为准。");
       }
 
       function clearAll() {
-        $("#principal, #term, #rate, #interest").val("");
-        $("#resultRate, #resultInterest, #resultTotal").text("-");
+        ["#principal", "#term", "#rate", "#interest", "#startDate", "#endDate"].forEach(function (selector) {
+          $(selector).value = "";
+        });
+        resetResults();
         clearMessage();
       }
 
-      $(".mode-btn").on("click", function () {
-        setTarget($(this).data("target"));
-        $("#resultRate, #resultInterest, #resultTotal").text("-");
+      $$(".mode-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          setTarget(button.dataset.target);
+          resetResults();
+          clearMessage();
+        });
+      });
+
+      $("#calculateBtn").addEventListener("click", calculate);
+      $("#clearBtn").addEventListener("click", clearAll);
+
+      ["#startDate", "#endDate"].forEach(function (selector) {
+        $(selector).addEventListener("change", function () {
+          calculateDaysFromDateRange({ showMessage: true });
+        });
+      });
+
+      $("#term").addEventListener("input", function () {
+        resetResults();
         clearMessage();
       });
 
-      $("#calculateBtn").on("click", calculate);
-      $("#clearBtn").on("click", clearAll);
+      $$("input, select").forEach(function (element) {
+        element.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            calculate();
+          }
+        });
+      });
 
-      $("input, select").on("keydown", function (event) {
-        if (event.key === "Enter") {
+      $$(".example-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+          const example = button.dataset.example;
+          clearAll();
+
+          if (example === "rate") {
+            setTarget("rate");
+            $("#principal").value = 100000;
+            $("#term").value = 35;
+            $("#termUnit").value = "day";
+            $("#interest").value = 225.34;
+          }
+
+          if (example === "interest") {
+            setTarget("interest");
+            $("#principal").value = 100000;
+            $("#term").value = 35;
+            $("#termUnit").value = "day";
+            $("#rate").value = 2.35;
+          }
+
+          if (example === "term") {
+            setTarget("term");
+            $("#principal").value = 100000;
+            $("#rate").value = 2.35;
+            $("#interest").value = 225.34;
+            $("#termUnit").value = "day";
+          }
+
           calculate();
-        }
+        });
       });
 
-      $(".example-btn").on("click", function () {
-        const example = $(this).data("example");
-        clearAll();
-
-        if (example === "rate") {
-          setTarget("rate");
-          $("#principal").val(100000);
-          $("#term").val(35);
-          $("#termUnit").val("day");
-          $("#interest").val(225.34);
-        }
-
-        if (example === "interest") {
-          setTarget("interest");
-          $("#principal").val(100000);
-          $("#term").val(35);
-          $("#termUnit").val("day");
-          $("#rate").val(2.35);
-        }
-
-        if (example === "term") {
-          setTarget("term");
-          $("#principal").val(100000);
-          $("#rate").val(2.35);
-          $("#interest").val(225.34);
-          $("#termUnit").val("day");
-        }
-
-        calculate();
-      });
-
+      $("#appVersion").textContent = APP_VERSION;
       setTarget("rate");
+      clearMessage();
     });
   </script>
 </body>
