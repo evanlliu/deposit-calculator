@@ -1,7 +1,7 @@
 {
-  "name": "定期存款年利率计算器",
+  "name": "定存计算器",
   "short_name": "定存计算器",
-  "description": "支持正向计算和反向推算的定期存款年利率计算器",
+  "description": "定存计算器，支持年利率、利息、本金和期限计算。",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

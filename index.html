@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>定期存款年利率计算器</title>
+  <title>定存计算器</title>
   <!-- iOS / PWA：添加到主屏幕后以独立 App 方式打开，不显示 Safari 地址栏 -->
   <meta name="theme-color" content="#2563eb" />
   <meta name="application-name" content="定存计算器" />
@@ -29,11 +29,11 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
-      background: linear-gradient(135deg, #f4f7fb 0%, #e9eef7 100%);
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 32%), linear-gradient(135deg, #f4f7fb 0%, #e9eef7 100%);
       color: #1f2937;
       min-height: 100vh;
       min-height: 100dvh;
-      padding: calc(18px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left));
+      padding: calc(12px + env(safe-area-inset-top)) calc(14px + env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
       -webkit-text-size-adjust: 100%;
       overscroll-behavior-y: none;
     }
@@ -43,13 +43,13 @@
     }
 
     .app {
-      max-width: 980px;
+      width: min(1180px, 100%);
       margin: 0 auto;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
     }
 
     .title-row {
@@ -58,20 +58,21 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 8px;
     }
 
     .header h1 {
       margin: 0;
-      font-size: 30px;
-      color: #111827;
+      font-size: clamp(24px, 2.8vw, 34px);
+      line-height: 1.16;
+      color: #0f172a;
+      letter-spacing: -0.04em;
     }
 
     .version-badge {
       display: inline-flex;
       align-items: center;
-      height: 26px;
-      padding: 0 10px;
+      height: 24px;
+      padding: 0 9px;
       border-radius: 999px;
       background: #dbeafe;
       color: #1d4ed8;
@@ -80,24 +81,33 @@
       letter-spacing: 0.02em;
     }
 
-    .header p {
-      margin: 0;
-      color: #6b7280;
-      font-size: 15px;
-      line-height: 1.6;
+    .calculator-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 308px;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 22px;
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.10);
+      padding: 16px;
+      backdrop-filter: blur(12px);
     }
 
-    .calculator-card {
-      background: #ffffff;
-      border-radius: 22px;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-      padding: 22px;
+    .card-main,
+    .card-side {
+      min-width: 0;
+    }
+
+    .card-side {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .mode-box {
       display: flex;
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 8px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
     }
 
@@ -105,47 +115,49 @@
       border: 1px solid #d1d5db;
       background: #fff;
       color: #374151;
-      padding: 10px 14px;
+      padding: 8px 13px;
       border-radius: 999px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13px;
+      font-weight: 750;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .mode-btn.active {
       background: #2563eb;
       border-color: #2563eb;
       color: #fff;
-      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 10px;
     }
 
     .field {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 15px;
+      padding: 11px;
     }
 
     .field label {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
-      font-size: 14px;
-      color: #374151;
-      margin-bottom: 9px;
-      font-weight: 600;
+      gap: 10px;
+      font-size: 13px;
+      color: #27364a;
+      margin-bottom: 7px;
+      font-weight: 750;
     }
 
     .field .hint {
-      color: #9ca3af;
-      font-size: 12px;
-      font-weight: 400;
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 500;
       white-space: nowrap;
     }
 
@@ -156,7 +168,7 @@
     }
 
     .date-range {
-      margin-top: 10px;
+      margin-top: 8px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
@@ -168,44 +180,46 @@
 
     .date-field span {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
       color: #64748b;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     .date-field input {
-      height: 40px;
-      font-size: 14px;
-      padding: 0 10px;
+      height: 36px;
+      font-size: 13px;
+      padding: 0 9px;
     }
 
     .date-note {
-      margin-top: 8px;
+      margin-top: 7px;
       color: #94a3b8;
-      font-size: 12px;
-      line-height: 1.5;
+      font-size: 11px;
+      line-height: 1.45;
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
-      height: 44px;
+      height: 40px;
       border-radius: 12px;
       border: 1px solid #d1d5db;
       background: #fff;
-      padding: 0 12px;
+      padding: 0 11px;
       font-size: 15px;
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    input:focus, select:focus {
+    input:focus,
+    select:focus {
       border-color: #2563eb;
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
     }
 
     select {
-      max-width: 110px;
+      max-width: 104px;
       flex-shrink: 0;
     }
 
@@ -213,31 +227,32 @@
       background: #eef2ff;
       border-color: #93c5fd;
       color: #1d4ed8;
-      font-weight: 700;
+      font-weight: 750;
     }
 
     .base-days {
-      margin-top: 14px;
+      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 14px;
+      padding: 10px 12px;
       background: #f8fafc;
       border: 1px dashed #cbd5e1;
-      border-radius: 16px;
+      border-radius: 15px;
       color: #475569;
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .base-days select {
-      max-width: 160px;
+      max-width: 150px;
     }
 
     .actions {
       display: flex;
-      gap: 12px;
-      margin-top: 18px;
+      gap: 10px;
+      margin-top: 10px;
       flex-wrap: wrap;
     }
 
@@ -245,10 +260,11 @@
       border: none;
       cursor: pointer;
       border-radius: 14px;
-      padding: 12px 18px;
-      font-size: 15px;
-      font-weight: 700;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 750;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     button:active {
@@ -256,9 +272,9 @@
     }
 
     .primary-btn {
-      background: #2563eb;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
       color: #fff;
-      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.24);
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
       flex: 1;
       min-width: 180px;
     }
@@ -266,54 +282,54 @@
     .secondary-btn {
       background: #eef2ff;
       color: #1d4ed8;
-      min-width: 120px;
+      min-width: 110px;
     }
 
     .result {
-      margin-top: 18px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: 1fr;
+      gap: 9px;
     }
 
     .result-item {
-      background: #0f172a;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
       color: #fff;
-      border-radius: 18px;
-      padding: 16px;
-      min-height: 96px;
+      border-radius: 17px;
+      padding: 13px 14px;
+      min-height: 78px;
     }
 
     .result-item span {
       display: block;
       color: #cbd5e1;
-      font-size: 13px;
-      margin-bottom: 10px;
+      font-size: 12px;
+      margin-bottom: 8px;
     }
 
     .result-item strong {
       display: block;
-      font-size: 22px;
+      font-size: 21px;
+      line-height: 1.15;
       word-break: break-word;
     }
 
     .formula {
-      margin-top: 14px;
       color: #64748b;
-      font-size: 13px;
-      line-height: 1.7;
+      font-size: 12px;
+      line-height: 1.65;
       background: #f8fafc;
-      border-radius: 14px;
-      padding: 12px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 15px;
+      padding: 11px 12px;
     }
 
     .message {
-      margin-top: 16px;
-      padding: 12px 14px;
-      border-radius: 14px;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 13px;
       display: none;
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     .message.error {
@@ -331,78 +347,325 @@
     }
 
     .example-box {
-      margin-top: 16px;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .example-btn {
-      background: #f3f4f6;
-      color: #374151;
-      padding: 9px 13px;
-      font-size: 13px;
+      background: #f1f5f9;
+      color: #334155;
+      padding: 8px 10px;
+      font-size: 12px;
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 700;
+      line-height: 1.2;
     }
 
-    @media (max-width: 720px) {
+    .float-lang {
+      position: fixed;
+      right: calc(18px + env(safe-area-inset-right));
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      z-index: 20;
+      min-width: 54px;
+      height: 44px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: #0f172a;
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 14px;
+    }
+
+    @media (min-width: 721px) and (max-height: 760px) {
       body {
-        padding: calc(14px + env(safe-area-inset-top)) calc(14px + env(safe-area-inset-right)) calc(14px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
+        padding-top: calc(8px + env(safe-area-inset-top));
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+      }
+
+      .header {
+        margin-bottom: 8px;
       }
 
       .header h1 {
-        font-size: 23px;
-      }
-
-      .header p {
-        font-size: 13px;
+        font-size: 26px;
       }
 
       .calculator-card {
         padding: 14px;
-        border-radius: 18px;
-      }
-
-      .mode-box {
-        gap: 8px;
-        margin-bottom: 14px;
-      }
-
-      .mode-btn {
-        flex: 1 1 calc(50% - 8px);
-        padding: 9px 8px;
+        gap: 12px;
       }
 
       .field {
-        padding: 12px;
-      }
-
-      .date-range {
-        grid-template-columns: 1fr;
-      }
-
-      .grid,
-      .result {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        padding: 10px;
       }
 
       .result-item {
-        min-height: auto;
+        min-height: 70px;
+        padding: 11px 12px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .calculator-card {
+        grid-template-columns: 1fr;
+      }
+
+      .card-side {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .result {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: calc(6px + env(safe-area-inset-top)) calc(6px + env(safe-area-inset-right)) calc(56px + env(safe-area-inset-bottom)) calc(6px + env(safe-area-inset-left));
+      }
+
+      .header {
+        margin-bottom: 5px;
+      }
+
+      .title-row {
+        gap: 6px;
+      }
+
+      .header h1 {
+        font-size: 20px;
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      .version-badge {
+        height: 18px;
+        padding: 0 6px;
+        font-size: 10px;
+      }
+
+      .calculator-card {
+        padding: 7px;
+        border-radius: 15px;
+        gap: 6px;
+      }
+
+      .card-main,
+      .card-side {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .mode-box {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 5px;
+        margin-bottom: 0;
+      }
+
+      .mode-btn {
+        min-width: 0;
+        padding: 6px 3px;
+        font-size: 11px;
+        line-height: 1.15;
+        border-radius: 11px;
+        white-space: normal;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .field {
+        padding: 6px;
+        border-radius: 12px;
+      }
+
+      .field label {
+        margin-bottom: 4px;
+        font-size: 11px;
+      }
+
+      .field .hint {
+        display: none;
+      }
+
+      input,
+      select {
+        height: 32px;
+        border-radius: 10px;
+        padding: 0 8px;
+        font-size: 14px;
+      }
+
+      select {
+        max-width: 74px;
+        padding: 0 6px;
+      }
+
+      .input-row {
+        gap: 5px;
+      }
+
+      .date-range {
+        margin-top: 6px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+      }
+
+      .date-field span {
+        margin-bottom: 2px;
+        font-size: 10px;
+      }
+
+      .date-field input {
+        height: 30px;
+        padding: 0 5px;
+        font-size: 12px;
+      }
+
+      .date-note {
+        display: none;
       }
 
       .base-days {
-        align-items: stretch;
-        flex-direction: column;
+        margin-top: 0;
+        flex-direction: row;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        line-height: 1.3;
+      }
+
+      .base-days > div {
+        flex: 1;
+        min-width: 0;
       }
 
       .base-days select {
-        max-width: none;
+        max-width: 92px;
+        height: 32px;
+        font-size: 12px;
       }
 
-      .actions button {
-        width: 100%;
+      .actions {
+        flex-wrap: nowrap;
+        gap: 6px;
+        margin-top: 0;
+      }
+
+      button {
+        padding: 8px 10px;
+        border-radius: 11px;
+        font-size: 13px;
+      }
+
+      .primary-btn {
+        min-width: 0;
+      }
+
+      .secondary-btn {
+        min-width: 74px;
+      }
+
+      .message {
+        margin-top: 0;
+        padding: 7px 8px;
+        border-radius: 10px;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      .result {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
+      }
+
+      .result-item {
+        min-height: 52px;
+        padding: 7px 6px;
+        border-radius: 12px;
+      }
+
+      .result-item span {
+        margin-bottom: 4px;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+
+      .result-item strong {
+        font-size: 14px;
+        line-height: 1.08;
+      }
+
+      .formula {
+        padding: 6px 8px;
+        border-radius: 12px;
+        font-size: 10.5px;
+        line-height: 1.35;
+      }
+
+      .example-box {
+        flex-wrap: nowrap;
+        gap: 5px;
+        overflow-x: auto;
+        padding-bottom: 1px;
+        scrollbar-width: none;
+      }
+
+      .example-box::-webkit-scrollbar {
+        display: none;
+      }
+
+      .example-btn {
+        flex: 0 0 auto;
+        max-width: 190px;
+        padding: 6px 8px;
+        border-radius: 999px;
+        font-size: 10.5px;
+        white-space: nowrap;
+      }
+
+      .float-lang {
+        right: calc(10px + env(safe-area-inset-right));
+        bottom: calc(10px + env(safe-area-inset-bottom));
+        min-width: 46px;
+        height: 38px;
+        padding: 0 12px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .mode-btn {
+        font-size: 10px;
+        padding-left: 2px;
+        padding-right: 2px;
+      }
+
+      .date-field input {
+        font-size: 11px;
+      }
+
+      .result-item strong {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 720px) and (max-height: 700px) {
+      .formula {
+        display: none;
+      }
+
+      .example-box {
+        display: none;
       }
     }
   </style>
@@ -411,119 +674,122 @@
   <div class="app">
     <div class="header">
       <div class="title-row">
-        <h1>定期存款年利率计算器</h1>
-        <span class="version-badge" id="appVersion">v1.2.0</span>
+        <h1 data-i18n="title">定存计算器</h1>
+        <span class="version-badge" id="appVersion">v1.4.0</span>
       </div>
-      <p>支持正向计算和反向推算：年利率、本金、期限、利息都可以作为未知项反推。</p>
     </div>
 
     <div class="calculator-card">
-      <div class="mode-box">
-        <button class="mode-btn active" data-target="rate">反推年利率</button>
-        <button class="mode-btn" data-target="interest">计算利息</button>
-        <button class="mode-btn" data-target="principal">反推本金</button>
-        <button class="mode-btn" data-target="term">反推期限</button>
-      </div>
-
-      <div class="grid">
-        <div class="field">
-          <label for="principal">
-            本金
-            <span class="hint">Principal</span>
-          </label>
-          <input id="principal" type="number" min="0" step="0.01" placeholder="例如：100000" />
+      <main class="card-main">
+        <div class="mode-box">
+          <button class="mode-btn active" data-target="rate" data-i18n="mode.rate">求年利率</button>
+          <button class="mode-btn" data-target="interest" data-i18n="mode.interest">算利息</button>
+          <button class="mode-btn" data-target="principal" data-i18n="mode.principal">求本金</button>
+          <button class="mode-btn" data-target="term" data-i18n="mode.term">求期限</button>
         </div>
 
-        <div class="field">
-          <label for="term">
-            存款期限
-            <span class="hint">Term</span>
-          </label>
-          <div class="input-row">
-            <input id="term" type="number" min="0" step="0.01" placeholder="例如：35" />
-            <select id="termUnit">
-              <option value="day">天</option>
-              <option value="month">月</option>
-              <option value="year">年</option>
-            </select>
+        <div class="grid">
+          <div class="field">
+            <label for="principal">
+              <span data-i18n="field.principal">本金</span>
+              <span class="hint">Principal</span>
+            </label>
+            <input id="principal" type="number" min="0" step="0.01" data-i18n-placeholder="placeholder.principal" placeholder="例如：100000" />
           </div>
-          <div class="date-range" aria-label="根据开始日期和结束日期自动计算存款天数">
-            <div class="date-field">
-              <span>开始日期</span>
-              <input id="startDate" type="date" />
+
+          <div class="field">
+            <label for="term">
+              <span data-i18n="field.term">存款期限</span>
+              <span class="hint">Term</span>
+            </label>
+            <div class="input-row">
+              <input id="term" type="number" min="0" step="0.01" data-i18n-placeholder="placeholder.term" placeholder="例如：35" />
+              <select id="termUnit" aria-label="Term unit">
+                <option value="day" data-i18n="unit.day">天</option>
+                <option value="month" data-i18n="unit.month">月</option>
+                <option value="year" data-i18n="unit.year">年</option>
+              </select>
             </div>
-            <div class="date-field">
-              <span>结束日期</span>
-              <input id="endDate" type="date" />
+            <div class="date-range" aria-label="根据开始日期和结束日期自动计算存款天数">
+              <div class="date-field">
+                <span data-i18n="date.start">开始日期</span>
+                <input id="startDate" type="date" />
+              </div>
+              <div class="date-field">
+                <span data-i18n="date.end">结束日期</span>
+                <input id="endDate" type="date" />
+              </div>
             </div>
+            <div class="date-note" data-i18n="date.note">选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入上方。</div>
           </div>
-          <div class="date-note">选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入上方。</div>
+
+          <div class="field">
+            <label for="rate">
+              <span data-i18n="field.rate">年利率</span>
+              <span class="hint">Annual Rate %</span>
+            </label>
+            <input id="rate" type="number" min="0" step="0.0001" data-i18n-placeholder="placeholder.rate" placeholder="例如：2.35" />
+          </div>
+
+          <div class="field">
+            <label for="interest">
+              <span data-i18n="field.interest">利息</span>
+              <span class="hint">Interest</span>
+            </label>
+            <input id="interest" type="number" min="0" step="0.01" data-i18n-placeholder="placeholder.interest" placeholder="例如：225.34" />
+          </div>
         </div>
 
-        <div class="field">
-          <label for="rate">
-            年利率
-            <span class="hint">Annual Rate %</span>
-          </label>
-          <input id="rate" type="number" min="0" step="0.0001" placeholder="例如：2.35" />
+        <div class="base-days">
+          <div data-i18n="baseDays.note">年化天数口径：银行常见按 365 天，也有产品按 360 天。你可以根据银行说明切换。</div>
+          <select id="baseDays" aria-label="Annual basis days">
+            <option value="365" data-i18n="baseDays.365">365 天</option>
+            <option value="360" data-i18n="baseDays.360">360 天</option>
+          </select>
         </div>
 
-        <div class="field">
-          <label for="interest">
-            利息
-            <span class="hint">Interest</span>
-          </label>
-          <input id="interest" type="number" min="0" step="0.01" placeholder="例如：225.34" />
+        <div class="actions">
+          <button class="primary-btn" id="calculateBtn" data-i18n="button.calculate">开始计算</button>
+          <button class="secondary-btn" id="clearBtn" data-i18n="button.clear">清空</button>
         </div>
-      </div>
 
-      <div class="base-days">
-        <div>
-          年化天数口径：银行常见按 365 天，也有产品按 360 天。你可以根据银行说明切换。
+        <div id="message" class="message"></div>
+      </main>
+
+      <aside class="card-side">
+        <div class="result">
+          <div class="result-item">
+            <span data-i18n="result.rate">年利率</span>
+            <strong id="resultRate">-</strong>
+          </div>
+          <div class="result-item">
+            <span data-i18n="result.interest">利息</span>
+            <strong id="resultInterest">-</strong>
+          </div>
+          <div class="result-item">
+            <span data-i18n="result.total">本息合计</span>
+            <strong id="resultTotal">-</strong>
+          </div>
         </div>
-        <select id="baseDays">
-          <option value="365">365 天</option>
-          <option value="360">360 天</option>
-        </select>
-      </div>
 
-      <div class="actions">
-        <button class="primary-btn" id="calculateBtn">开始计算</button>
-        <button class="secondary-btn" id="clearBtn">清空</button>
-      </div>
-
-      <div class="example-box">
-        <button class="example-btn" data-example="rate">示例：本金+期限+利息 → 年利率</button>
-        <button class="example-btn" data-example="interest">示例：本金+期限+年利率 → 利息</button>
-        <button class="example-btn" data-example="term">示例：本金+利息+年利率 → 期限</button>
-      </div>
-
-      <div id="message" class="message"></div>
-
-      <div class="result">
-        <div class="result-item">
-          <span>年利率</span>
-          <strong id="resultRate">-</strong>
+        <div class="formula" data-i18n="formula">
+          计算公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />例如：本金 100,000，35 天，利息 225.34，年化 365 天，则年利率 ≈ 2.35%。
         </div>
-        <div class="result-item">
-          <span>利息</span>
-          <strong id="resultInterest">-</strong>
-        </div>
-        <div class="result-item">
-          <span>本息合计</span>
-          <strong id="resultTotal">-</strong>
-        </div>
-      </div>
 
-      <div class="formula">
-        计算公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />
-        例如：本金 100,000，35 天，利息 225.34，年化 365 天，则年利率 ≈ 2.35%。
-      </div>
+        <div class="example-box">
+          <button class="example-btn" data-example="rate" data-i18n="example.rate">示例：本金+期限+利息 → 年利率</button>
+          <button class="example-btn" data-example="interest" data-i18n="example.interest">示例：本金+期限+年利率 → 利息</button>
+          <button class="example-btn" data-example="term" data-i18n="example.term">示例：本金+利息+年利率 → 期限</button>
+        </div>
+      </aside>
     </div>
   </div>
 
+  <button class="float-lang" id="langToggle" type="button" aria-label="Switch language">EN</button>
+
   <script>
-    const APP_VERSION = "v1.2.0";
+    const APP_VERSION = "v1.4.0";
+    const LANG_STORAGE_KEY = "depositCalculatorLang";
     const isStandaloneMode = window.navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
     if (isStandaloneMode) {
       document.documentElement.classList.add("standalone-mode");
@@ -541,6 +807,150 @@
 
     document.addEventListener("DOMContentLoaded", function () {
       let currentTarget = "rate";
+      let currentLang = getInitialLang();
+
+      const i18n = {
+        zh: {
+          title: "定存计算器",
+          pageTitle: "定存计算器",
+          htmlLang: "zh-CN",
+          mode: {
+            rate: "求年利率",
+            interest: "算利息",
+            principal: "求本金",
+            term: "求期限"
+          },
+          field: {
+            principal: "本金",
+            term: "存款期限",
+            rate: "年利率",
+            interest: "利息"
+          },
+          placeholder: {
+            principal: "例如：100000",
+            term: "例如：35",
+            rate: "例如：2.35",
+            interest: "例如：225.34"
+          },
+          disabledPlaceholder: {
+            rate: "自动求年利率",
+            interest: "自动算利息",
+            principal: "自动求本金",
+            term: "自动求期限"
+          },
+          unit: {
+            day: "天",
+            month: "月",
+            year: "年",
+            dayFull: "天",
+            monthFull: "个月",
+            yearFull: "年"
+          },
+          date: {
+            start: "开始日期",
+            end: "结束日期",
+            note: "选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入上方。"
+          },
+          baseDays: {
+            note: "年化天数口径：银行常见按 365 天，也有产品按 360 天。你可以根据银行说明切换。",
+            365: "365 天",
+            360: "360 天"
+          },
+          button: {
+            calculate: "开始计算",
+            clear: "清空"
+          },
+          result: {
+            rate: "年利率",
+            interest: "利息",
+            total: "合计"
+          },
+          formula: "计算公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />例如：本金 100,000，35 天，利息 225.34，年化 365 天，则年利率 ≈ 2.35%。",
+          example: {
+            rate: "示例：本金+期限+利息 → 年利率",
+            interest: "示例：本金+期限+年利率 → 利息",
+            term: "示例：本金+利息+年利率 → 期限"
+          },
+          message: {
+            dateError: "结束日期必须晚于开始日期，才能计算有效的存款天数。",
+            dateSuccess: function (days) { return "已根据开始日期和结束日期自动填入存款期限：" + days + " 天。"; },
+            validatePositive: function (name) { return "请填写有效的" + name + "，必须大于 0。"; },
+            termText: function (term) { return "，反推期限为 " + term; },
+            calculationSuccess: function (termText) { return "计算完成" + termText + "。结果按单利估算，实际以银行产品规则为准。"; }
+          },
+          langToggle: "EN"
+        },
+        en: {
+          title: "Deposit Calculator",
+          pageTitle: "Deposit Calculator",
+          htmlLang: "en",
+          mode: {
+            rate: "Rate",
+            interest: "Interest",
+            principal: "Principal",
+            term: "Term"
+          },
+          field: {
+            principal: "Principal",
+            term: "Term",
+            rate: "Annual Rate",
+            interest: "Interest"
+          },
+          placeholder: {
+            principal: "e.g. 100000",
+            term: "e.g. 35",
+            rate: "e.g. 2.35",
+            interest: "e.g. 225.34"
+          },
+          disabledPlaceholder: {
+            rate: "Auto rate",
+            interest: "Auto interest",
+            principal: "Auto principal",
+            term: "Auto term"
+          },
+          unit: {
+            day: "Days",
+            month: "Months",
+            year: "Years",
+            dayFull: "days",
+            monthFull: "months",
+            yearFull: "years"
+          },
+          date: {
+            start: "Start Date",
+            end: "End Date",
+            note: "Select start and end dates to auto-fill the term as End Date - Start Date."
+          },
+          baseDays: {
+            note: "Annual basis: banks commonly use 365 days, while some products use 360 days. Choose based on the product rules.",
+            365: "365 days",
+            360: "360 days"
+          },
+          button: {
+            calculate: "Calculate",
+            clear: "Clear"
+          },
+          result: {
+            rate: "Annual Rate",
+            interest: "Interest",
+            total: "Total"
+          },
+          formula: "Formula: Interest = Principal × Annual Rate × Term Days ÷ Annual Basis Days.<br />Example: Principal 100,000, 35 days, interest 225.34, 365-day basis, annual rate ≈ 2.35%.",
+          example: {
+            rate: "Example: Principal + Term + Interest → Rate",
+            interest: "Example: Principal + Term + Rate → Interest",
+            term: "Example: Principal + Interest + Rate → Term"
+          },
+          message: {
+            dateError: "The end date must be later than the start date to calculate a valid term.",
+            dateSuccess: function (days) { return "Term auto-filled from the selected dates: " + days + " days."; },
+            validatePositive: function (name) { return "Please enter a valid " + name + "; it must be greater than 0."; },
+            termText: function (term) { return ", calculated term: " + term; },
+            calculationSuccess: function (termText) { return "Calculation completed" + termText + ". Results use simple interest; actual bank rules may vary."; }
+          },
+          langToggle: "中"
+        }
+      };
 
       const $ = function (selector) {
         return document.querySelector(selector);
@@ -549,6 +959,45 @@
       const $$ = function (selector) {
         return Array.from(document.querySelectorAll(selector));
       };
+
+      function getInitialLang() {
+        const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+        if (savedLang === "zh" || savedLang === "en") return savedLang;
+        return "zh";
+      }
+
+      function getByPath(path) {
+        return path.split(".").reduce(function (source, key) {
+          return source && source[key];
+        }, i18n[currentLang]);
+      }
+
+      function t(path) {
+        const value = getByPath(path);
+        return value === undefined || value === null ? path : value;
+      }
+
+      function applyTranslations() {
+        document.documentElement.lang = i18n[currentLang].htmlLang;
+        document.title = i18n[currentLang].pageTitle;
+
+        $$('[data-i18n]').forEach(function (element) {
+          const value = t(element.dataset.i18n);
+          if (element.classList.contains("formula")) {
+            element.innerHTML = value;
+          } else {
+            element.textContent = value;
+          }
+        });
+
+        $$('[data-i18n-placeholder]').forEach(function (element) {
+          element.placeholder = t(element.dataset.i18nPlaceholder);
+        });
+
+        $("#langToggle").textContent = i18n[currentLang].langToggle;
+        $("#appVersion").textContent = APP_VERSION;
+        refreshTargetPlaceholder();
+      }
 
       function numberValue(selector) {
         const element = $(selector);
@@ -594,7 +1043,7 @@
           $("#term").value = "";
           if (shouldShowMessage) {
             resetResults();
-            showMessage("error", "结束日期必须晚于开始日期，才能计算有效的存款天数。");
+            showMessage("error", i18n[currentLang].message.dateError);
           }
           return null;
         }
@@ -603,14 +1052,14 @@
         $("#termUnit").value = "day";
         resetResults();
         if (shouldShowMessage) {
-          showMessage("success", "已根据开始日期和结束日期自动填入存款期限：" + days + " 天。");
+          showMessage("success", i18n[currentLang].message.dateSuccess(days));
         }
         return days;
       }
 
       function formatMoney(value) {
         if (!Number.isFinite(value)) return "-";
-        return value.toLocaleString("zh-CN", {
+        return value.toLocaleString(currentLang === "zh" ? "zh-CN" : "en-US", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2
         });
@@ -627,7 +1076,7 @@
 
       function formatTerm(value, unit) {
         if (!Number.isFinite(value)) return "-";
-        const unitText = unit === "day" ? "天" : unit === "month" ? "个月" : "年";
+        const unitText = unit === "day" ? i18n[currentLang].unit.dayFull : unit === "month" ? i18n[currentLang].unit.monthFull : i18n[currentLang].unit.yearFull;
         return trimTrailingZeros(value.toFixed(2)) + " " + unitText;
       }
 
@@ -652,7 +1101,15 @@
         $("#resultTotal").textContent = "-";
       }
 
-      function setTarget(target) {
+      function refreshTargetPlaceholder() {
+        const targetInput = $("#" + currentTarget);
+        if (targetInput) {
+          targetInput.placeholder = i18n[currentLang].disabledPlaceholder[currentTarget];
+        }
+      }
+
+      function setTarget(target, options) {
+        const shouldClearTarget = !(options && options.keepValue);
         currentTarget = target;
         $$(".mode-btn").forEach(function (button) {
           button.classList.toggle("active", button.dataset.target === target);
@@ -662,25 +1119,19 @@
           const input = $(selector);
           input.classList.remove("disabled-input");
           input.readOnly = false;
+          input.placeholder = t(input.dataset.i18nPlaceholder);
         });
 
         const targetInput = $("#" + target);
         targetInput.classList.add("disabled-input");
         targetInput.readOnly = true;
-        targetInput.value = "";
-
-        const placeholderMap = {
-          rate: "将自动反推年利率",
-          interest: "将自动计算利息",
-          principal: "将自动反推本金",
-          term: "将自动反推期限"
-        };
-        targetInput.placeholder = placeholderMap[target];
+        if (shouldClearTarget) targetInput.value = "";
+        refreshTargetPlaceholder();
       }
 
-      function validatePositive(name, value) {
+      function validatePositive(nameKey, value) {
         if (value === null || value <= 0) {
-          showMessage("error", "请填写有效的" + name + "，必须大于 0。");
+          showMessage("error", i18n[currentLang].message.validatePositive(i18n[currentLang].field[nameKey]));
           return false;
         }
         return true;
@@ -703,30 +1154,30 @@
         let resultInterest = interest;
 
         if (currentTarget === "rate") {
-          if (!validatePositive("本金", principal)) return;
-          if (!validatePositive("存款期限", days)) return;
-          if (!validatePositive("利息", interest)) return;
+          if (!validatePositive("principal", principal)) return;
+          if (!validatePositive("term", days)) return;
+          if (!validatePositive("interest", interest)) return;
           resultRatePercent = interest / principal / days * baseDays * 100;
         }
 
         if (currentTarget === "interest") {
-          if (!validatePositive("本金", principal)) return;
-          if (!validatePositive("存款期限", days)) return;
-          if (!validatePositive("年利率", ratePercent)) return;
+          if (!validatePositive("principal", principal)) return;
+          if (!validatePositive("term", days)) return;
+          if (!validatePositive("rate", ratePercent)) return;
           resultInterest = principal * (ratePercent / 100) * days / baseDays;
         }
 
         if (currentTarget === "principal") {
-          if (!validatePositive("存款期限", days)) return;
-          if (!validatePositive("年利率", ratePercent)) return;
-          if (!validatePositive("利息", interest)) return;
+          if (!validatePositive("term", days)) return;
+          if (!validatePositive("rate", ratePercent)) return;
+          if (!validatePositive("interest", interest)) return;
           resultPrincipal = interest / (ratePercent / 100) / days * baseDays;
         }
 
         if (currentTarget === "term") {
-          if (!validatePositive("本金", principal)) return;
-          if (!validatePositive("年利率", ratePercent)) return;
-          if (!validatePositive("利息", interest)) return;
+          if (!validatePositive("principal", principal)) return;
+          if (!validatePositive("rate", ratePercent)) return;
+          if (!validatePositive("interest", interest)) return;
           resultDays = interest / principal / (ratePercent / 100) * baseDays;
           const convertedTerm = fromDays(resultDays, termUnit);
           $("#term").value = Number(convertedTerm.toFixed(4));
@@ -748,8 +1199,8 @@
         $("#resultInterest").textContent = formatMoney(resultInterest);
         $("#resultTotal").textContent = formatMoney(total);
 
-        const termText = currentTarget === "term" ? "，反推期限为 " + formatTerm(fromDays(resultDays, termUnit), termUnit) : "";
-        showMessage("success", "计算完成" + termText + "。结果按单利估算，实际以银行产品规则为准。");
+        const termText = currentTarget === "term" ? i18n[currentLang].message.termText(formatTerm(fromDays(resultDays, termUnit), termUnit)) : "";
+        showMessage("success", i18n[currentLang].message.calculationSuccess(termText));
       }
 
       function clearAll() {
@@ -770,6 +1221,12 @@
 
       $("#calculateBtn").addEventListener("click", calculate);
       $("#clearBtn").addEventListener("click", clearAll);
+      $("#langToggle").addEventListener("click", function () {
+        currentLang = currentLang === "zh" ? "en" : "zh";
+        localStorage.setItem(LANG_STORAGE_KEY, currentLang);
+        applyTranslations();
+        setTarget(currentTarget, { keepValue: true });
+      });
 
       ["#startDate", "#endDate"].forEach(function (selector) {
         $(selector).addEventListener("change", function () {
@@ -823,7 +1280,7 @@
         });
       });
 
-      $("#appVersion").textContent = APP_VERSION;
+      applyTranslations();
       setTarget("rate");
       clearMessage();
     });
