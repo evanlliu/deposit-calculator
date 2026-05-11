@@ -424,109 +424,149 @@
 
     @media (max-width: 720px) {
       body {
-        padding: calc(6px + env(safe-area-inset-top)) calc(6px + env(safe-area-inset-right)) calc(56px + env(safe-area-inset-bottom)) calc(6px + env(safe-area-inset-left));
+        padding: calc(8px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(72px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
+        overflow-x: hidden;
+      }
+
+      .app {
+        width: min(430px, 100%);
+        min-height: calc(100dvh - 80px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+        display: flex;
+        flex-direction: column;
       }
 
       .header {
-        margin-bottom: 5px;
+        margin-bottom: 8px;
+        flex: 0 0 auto;
       }
 
       .title-row {
-        gap: 6px;
+        gap: 7px;
       }
 
       .header h1 {
-        font-size: 20px;
-        line-height: 1.08;
+        font-size: 23px;
+        line-height: 1.12;
         letter-spacing: -0.03em;
       }
 
       .version-badge {
-        height: 18px;
-        padding: 0 6px;
+        height: 20px;
+        padding: 0 7px;
         font-size: 10px;
       }
 
       .calculator-card {
-        padding: 7px;
-        border-radius: 15px;
-        gap: 6px;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 12px;
+        border-radius: 22px;
+        gap: 10px;
       }
 
       .card-main,
       .card-side {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        min-width: 0;
+      }
+
+      .card-main {
+        gap: 10px;
+      }
+
+      .card-side {
+        gap: 9px;
       }
 
       .mode-box {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 5px;
+        gap: 7px;
         margin-bottom: 0;
       }
 
       .mode-btn {
         min-width: 0;
-        padding: 6px 3px;
-        font-size: 11px;
-        line-height: 1.15;
-        border-radius: 11px;
+        height: 40px;
+        padding: 0 4px;
+        font-size: 12px;
+        line-height: 1.1;
+        border-radius: 15px;
         white-space: normal;
       }
 
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
+        gap: 9px;
       }
 
       .field {
-        padding: 6px;
-        border-radius: 12px;
+        padding: 9px;
+        border-radius: 17px;
+        min-width: 0;
       }
 
       .field label {
-        margin-bottom: 4px;
-        font-size: 11px;
+        margin-bottom: 6px;
+        font-size: 12px;
       }
 
       .field .hint {
         display: none;
       }
 
+      .term-field {
+        grid-column: 1 / -1;
+      }
+
       input,
       select {
-        height: 32px;
-        border-radius: 10px;
-        padding: 0 8px;
-        font-size: 14px;
+        height: 38px;
+        border-radius: 14px;
+        padding: 0 10px;
+        font-size: 15px;
+        min-width: 0;
+      }
+
+      input[type="date"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        min-width: 0;
       }
 
       select {
-        max-width: 74px;
-        padding: 0 6px;
+        max-width: 92px;
+        padding: 0 8px;
       }
 
       .input-row {
-        gap: 5px;
+        gap: 7px;
       }
 
       .date-range {
-        margin-top: 6px;
+        margin-top: 8px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 5px;
+        gap: 7px;
+      }
+
+      .date-field {
+        min-width: 0;
+        overflow: hidden;
       }
 
       .date-field span {
-        margin-bottom: 2px;
-        font-size: 10px;
+        margin-bottom: 3px;
+        font-size: 11px;
       }
 
       .date-field input {
-        height: 30px;
-        padding: 0 5px;
-        font-size: 12px;
+        height: 35px;
+        padding: 0 8px;
+        font-size: 13px;
       }
 
       .date-note {
@@ -535,13 +575,12 @@
 
       .base-days {
         margin-top: 0;
-        flex-direction: row;
         align-items: center;
-        gap: 7px;
-        padding: 6px 8px;
-        border-radius: 12px;
-        font-size: 11px;
-        line-height: 1.3;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 16px;
+        font-size: 12px;
+        line-height: 1.35;
       }
 
       .base-days > div {
@@ -550,121 +589,187 @@
       }
 
       .base-days select {
-        max-width: 92px;
-        height: 32px;
-        font-size: 12px;
+        max-width: 96px;
+        height: 36px;
+        font-size: 13px;
       }
 
       .actions {
         flex-wrap: nowrap;
-        gap: 6px;
+        gap: 8px;
         margin-top: 0;
       }
 
       button {
-        padding: 8px 10px;
-        border-radius: 11px;
-        font-size: 13px;
+        padding: 10px 12px;
+        border-radius: 15px;
+        font-size: 14px;
       }
 
       .primary-btn {
         min-width: 0;
+        height: 43px;
       }
 
       .secondary-btn {
-        min-width: 74px;
+        min-width: 82px;
+        height: 43px;
       }
 
       .message {
         margin-top: 0;
-        padding: 7px 8px;
-        border-radius: 10px;
-        font-size: 11px;
+        padding: 8px 10px;
+        border-radius: 13px;
+        font-size: 12px;
         line-height: 1.35;
       }
 
       .result {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 5px;
+        gap: 7px;
       }
 
       .result-item {
-        min-height: 52px;
-        padding: 7px 6px;
-        border-radius: 12px;
+        min-height: 62px;
+        padding: 9px 8px;
+        border-radius: 16px;
       }
 
       .result-item span {
-        margin-bottom: 4px;
-        font-size: 10px;
+        margin-bottom: 6px;
+        font-size: 11px;
         white-space: nowrap;
       }
 
       .result-item strong {
-        font-size: 14px;
-        line-height: 1.08;
+        font-size: 16px;
+        line-height: 1.1;
       }
 
       .formula {
-        padding: 6px 8px;
-        border-radius: 12px;
-        font-size: 10.5px;
-        line-height: 1.35;
+        padding: 9px 10px;
+        border-radius: 16px;
+        font-size: 12px;
+        line-height: 1.42;
       }
 
       .example-box {
-        flex-wrap: nowrap;
-        gap: 5px;
-        overflow-x: auto;
-        padding-bottom: 1px;
-        scrollbar-width: none;
-      }
-
-      .example-box::-webkit-scrollbar {
-        display: none;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        overflow: visible;
+        padding-bottom: 0;
       }
 
       .example-btn {
-        flex: 0 0 auto;
-        max-width: 190px;
-        padding: 6px 8px;
-        border-radius: 999px;
-        font-size: 10.5px;
-        white-space: nowrap;
+        min-width: 0;
+        padding: 8px 6px;
+        border-radius: 13px;
+        font-size: 11px;
+        line-height: 1.22;
+        white-space: normal;
       }
 
       .float-lang {
-        right: calc(10px + env(safe-area-inset-right));
-        bottom: calc(10px + env(safe-area-inset-bottom));
-        min-width: 46px;
-        height: 38px;
-        padding: 0 12px;
+        right: calc(16px + env(safe-area-inset-right));
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        min-width: 50px;
+        height: 42px;
+        padding: 0 13px;
         font-size: 13px;
       }
     }
 
     @media (max-width: 390px) {
-      .mode-btn {
-        font-size: 10px;
-        padding-left: 2px;
-        padding-right: 2px;
+      body {
+        padding-left: calc(8px + env(safe-area-inset-left));
+        padding-right: calc(8px + env(safe-area-inset-right));
       }
 
-      .date-field input {
+      .calculator-card {
+        padding: 10px;
+        gap: 8px;
+      }
+
+      .card-main {
+        gap: 8px;
+      }
+
+      .mode-btn {
+        height: 37px;
         font-size: 11px;
       }
 
+      .grid {
+        gap: 7px;
+      }
+
+      .field {
+        padding: 8px;
+      }
+
+      input,
+      select {
+        height: 35px;
+        font-size: 14px;
+        padding: 0 8px;
+      }
+
+      select {
+        max-width: 84px;
+      }
+
+      .date-field input {
+        height: 32px;
+        font-size: 12px;
+      }
+
+      .base-days {
+        font-size: 11px;
+        padding: 7px 8px;
+      }
+
+      .base-days select {
+        max-width: 88px;
+        height: 34px;
+        font-size: 12px;
+      }
+
+      .result-item {
+        min-height: 56px;
+      }
+
       .result-item strong {
-        font-size: 13px;
+        font-size: 14px;
+      }
+
+      .formula {
+        font-size: 11px;
+        padding: 8px;
+      }
+
+      .example-btn {
+        font-size: 10px;
+        padding: 7px 4px;
       }
     }
 
-    @media (max-width: 720px) and (max-height: 700px) {
-      .formula {
-        display: none;
+    @media (max-width: 720px) and (max-height: 760px) {
+      .app {
+        min-height: auto;
+      }
+
+      .calculator-card {
+        justify-content: flex-start;
       }
 
       .example-box {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) and (max-height: 690px) {
+      .formula {
         display: none;
       }
     }
@@ -675,7 +780,7 @@
     <div class="header">
       <div class="title-row">
         <h1 data-i18n="title">定存计算器</h1>
-        <span class="version-badge" id="appVersion">v1.4.0</span>
+        <span class="version-badge" id="appVersion">v1.5.0</span>
       </div>
     </div>
 
@@ -697,7 +802,7 @@
             <input id="principal" type="number" min="0" step="0.01" data-i18n-placeholder="placeholder.principal" placeholder="例如：100000" />
           </div>
 
-          <div class="field">
+          <div class="field term-field">
             <label for="term">
               <span data-i18n="field.term">存款期限</span>
               <span class="hint">Term</span>
@@ -741,7 +846,7 @@
         </div>
 
         <div class="base-days">
-          <div data-i18n="baseDays.note">年化天数口径：银行常见按 365 天，也有产品按 360 天。你可以根据银行说明切换。</div>
+          <div data-i18n="baseDays.note">年化口径：按银行规则选择 365 / 360 天。</div>
           <select id="baseDays" aria-label="Annual basis days">
             <option value="365" data-i18n="baseDays.365">365 天</option>
             <option value="360" data-i18n="baseDays.360">360 天</option>
@@ -773,7 +878,7 @@
         </div>
 
         <div class="formula" data-i18n="formula">
-          计算公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />例如：本金 100,000，35 天，利息 225.34，年化 365 天，则年利率 ≈ 2.35%。
+          公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />例：100,000 元，35 天，利息 225.34，年化 365 天，年利率 ≈ 2.35%。
         </div>
 
         <div class="example-box">
@@ -788,7 +893,7 @@
   <button class="float-lang" id="langToggle" type="button" aria-label="Switch language">EN</button>
 
   <script>
-    const APP_VERSION = "v1.4.0";
+    const APP_VERSION = "v1.5.0";
     const LANG_STORAGE_KEY = "depositCalculatorLang";
     const isStandaloneMode = window.navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
     if (isStandaloneMode) {
@@ -852,7 +957,7 @@
             note: "选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入上方。"
           },
           baseDays: {
-            note: "年化天数口径：银行常见按 365 天，也有产品按 360 天。你可以根据银行说明切换。",
+            note: "年化口径：按银行规则选择 365 / 360 天。",
             365: "365 天",
             360: "360 天"
           },
@@ -865,7 +970,7 @@
             interest: "利息",
             total: "合计"
           },
-          formula: "计算公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />例如：本金 100,000，35 天，利息 225.34，年化 365 天，则年利率 ≈ 2.35%。",
+          formula: "公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />例：100,000 元，35 天，利息 225.34，年化 365 天，年利率 ≈ 2.35%。",
           example: {
             rate: "示例：本金+期限+利息 → 年利率",
             interest: "示例：本金+期限+年利率 → 利息",
@@ -922,7 +1027,7 @@
             note: "Select start and end dates to auto-fill the term as End Date - Start Date."
           },
           baseDays: {
-            note: "Annual basis: banks commonly use 365 days, while some products use 360 days. Choose based on the product rules.",
+            note: "Annual basis: choose 365 / 360 based on bank rules.",
             365: "365 days",
             360: "360 days"
           },
@@ -935,7 +1040,7 @@
             interest: "Interest",
             total: "Total"
           },
-          formula: "Formula: Interest = Principal × Annual Rate × Term Days ÷ Annual Basis Days.<br />Example: Principal 100,000, 35 days, interest 225.34, 365-day basis, annual rate ≈ 2.35%.",
+          formula: "Formula: Interest = Principal × Annual Rate × Term Days ÷ Annual Basis Days.<br />Example: 100,000, 35 days, interest 225.34, 365-day basis, rate ≈ 2.35%.",
           example: {
             rate: "Example: Principal + Term + Interest → Rate",
             interest: "Example: Principal + Term + Rate → Interest",
