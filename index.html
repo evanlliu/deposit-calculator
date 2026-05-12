@@ -1464,7 +1464,7 @@
       }
     }
 
-    /* v1.8.13 mobile fit */
+    /* v1.8.19 mobile fit */
 
     @media (max-width: 720px) {
       html,
@@ -1879,7 +1879,7 @@
 
 
 
-    /* v1.8.13 iOS Safari no input zoom */
+    /* v1.8.19 iOS Safari no input zoom */
     @media (max-width: 720px) {
       html {
         -webkit-text-size-adjust: 100%;
@@ -1902,24 +1902,969 @@
       }
     }
 
+
+    /* v1.8.19 mobile pretty layout: allow scrolling and improve visual spacing */
+    @media (max-width: 720px) {
+      html,
+      body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      body {
+        min-height: 100dvh;
+        padding: calc(10px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
+      }
+
+      .app {
+        width: min(430px, 100%);
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        display: block;
+        overflow: visible;
+      }
+
+      .header {
+        margin-bottom: 8px;
+      }
+
+      .title-row {
+        gap: 8px;
+      }
+
+      .header h1 {
+        font-size: clamp(21px, 6vw, 25px);
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+      }
+
+      .version-badge {
+        height: 20px;
+        padding: 0 8px;
+        font-size: 10px;
+      }
+
+      .calculator-card {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 12px;
+        min-height: auto;
+        max-height: none;
+        padding: 12px;
+        border-radius: 22px;
+        overflow: visible;
+      }
+
+      .card-main,
+      .card-side {
+        min-height: auto;
+        overflow: visible;
+        gap: 10px;
+      }
+
+      .mode-box {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 7px;
+        margin-bottom: 10px;
+      }
+
+      .mode-btn {
+        min-height: 38px;
+        padding: 8px 5px;
+        border-radius: 13px;
+        font-size: 12px;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .currency-panel {
+        margin-bottom: 10px;
+        padding: 11px;
+        border-radius: 17px;
+      }
+
+      .currency-main {
+        grid-template-columns: 1fr;
+        gap: 9px;
+      }
+
+      .currency-select-wrap,
+      .inline-rate {
+        gap: 8px;
+      }
+
+      .currency-select-wrap > span,
+      .inline-rate > span {
+        flex: 0 0 74px;
+        font-size: 12px;
+      }
+
+      input,
+      select,
+      textarea {
+        height: 42px;
+        min-height: 42px;
+        padding: 0 11px;
+        border-radius: 13px;
+        font-size: 16px !important;
+      }
+
+      .inline-rate input {
+        min-width: 0;
+      }
+
+      .rate-settings {
+        display: block;
+        margin-top: 8px;
+      }
+
+      .rate-settings:not([open]) {
+        display: block;
+      }
+
+      .rate-settings[open] {
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+      }
+
+      .rate-settings summary {
+        min-height: 32px;
+        font-size: 12px;
+      }
+
+      .rate-grid {
+        margin-top: 8px;
+        gap: 8px;
+      }
+
+      .rate-grid label span {
+        margin-bottom: 4px;
+        font-size: 11px;
+      }
+
+      .rate-grid input {
+        height: 38px;
+        min-height: 38px;
+        font-size: 16px !important;
+      }
+
+      .rate-hint {
+        display: block;
+        margin-top: 7px;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      .rate-actions {
+        margin-top: 8px;
+        gap: 8px;
+      }
+
+      .rate-refresh-btn {
+        min-height: 36px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+      }
+
+      .auto-refresh-toggle {
+        gap: 6px;
+        font-size: 11px;
+      }
+
+      .auto-refresh-toggle input {
+        width: 16px;
+        height: 16px;
+        min-height: 16px;
+      }
+
+      .rate-status {
+        display: block;
+        margin-top: 7px;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      .rate-source-note {
+        display: block;
+        margin-top: 5px;
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .field {
+        padding: 10px;
+        border-radius: 16px;
+      }
+
+      .field label {
+        margin-bottom: 6px;
+        font-size: 12px;
+        line-height: 1.15;
+      }
+
+      .field .hint {
+        display: none;
+      }
+
+      .term-field {
+        grid-column: 1 / -1;
+      }
+
+      .date-range {
+        margin-top: 7px;
+        gap: 8px;
+      }
+
+      .date-field span,
+      .term-inline-label {
+        margin-bottom: 4px;
+        font-size: 11px;
+      }
+
+      .date-field input {
+        height: 40px;
+        min-height: 40px;
+        padding: 0 9px;
+        font-size: 16px !important;
+      }
+
+      .term-input-block {
+        margin-top: 8px;
+      }
+
+      .term-row {
+        gap: 8px;
+      }
+
+      .term-row select {
+        flex: 0 0 90px;
+      }
+
+      .date-note {
+        display: none;
+      }
+
+      .base-days {
+        margin-top: 10px;
+        padding: 9px 10px;
+        border-radius: 16px;
+        gap: 8px;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .base-days div {
+        display: block;
+        white-space: normal;
+      }
+
+      .base-days select {
+        flex: 0 0 104px;
+        height: 38px;
+        min-height: 38px;
+        font-size: 16px !important;
+      }
+
+      .actions {
+        margin-top: 10px;
+        gap: 8px;
+      }
+
+      button {
+        min-height: 42px;
+        padding: 9px 12px;
+        border-radius: 14px;
+        font-size: 13px;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        height: 42px;
+        min-width: 0;
+      }
+
+      .primary-btn {
+        flex: 1 1 auto;
+      }
+
+      .secondary-btn {
+        flex: 0 0 88px;
+      }
+
+      .message {
+        display: block;
+        margin-top: 9px;
+        padding: 9px 10px;
+        border-radius: 14px;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .result {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .result-item {
+        min-height: 64px;
+        padding: 10px 9px;
+        border-radius: 16px;
+      }
+
+      .result-item span {
+        margin-bottom: 5px;
+        font-size: 10px;
+        line-height: 1;
+      }
+
+      .result-item strong {
+        font-size: 15px;
+        line-height: 1.18;
+      }
+
+      .money-cny {
+        margin-top: 3px;
+        font-size: 10px;
+        line-height: 1.15;
+      }
+
+      .cny-compare-card {
+        grid-column: 1 / -1;
+        min-height: 98px;
+      }
+
+      .cny-compare-card strong {
+        font-size: 12px;
+        line-height: 1.25;
+      }
+
+      .cny-compare-line {
+        margin-top: 2px;
+        gap: 8px;
+        font-size: 11px;
+      }
+
+      .cny-compare-rate {
+        margin-top: 2px;
+        font-size: 10px;
+        line-height: 1.25;
+      }
+
+      .cny-change {
+        margin-top: 5px;
+        padding-top: 5px;
+        font-size: 12px;
+      }
+
+      .fx-mini-note {
+        display: block;
+        margin-top: 4px;
+        font-size: 10px;
+      }
+
+      .formula {
+        display: block;
+        padding: 10px 11px;
+        border-radius: 16px;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .example-box {
+        display: grid;
+        gap: 8px;
+      }
+
+      .example-btn {
+        min-height: 38px;
+        padding: 8px 10px;
+        border-radius: 13px;
+        font-size: 12px;
+        text-align: left;
+      }
+
+      .float-lang {
+        right: max(10px, env(safe-area-inset-right));
+        bottom: max(10px, env(safe-area-inset-bottom));
+        width: 42px;
+        height: 42px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .calculator-card {
+        padding: 10px;
+        gap: 10px;
+      }
+
+      .mode-box {
+        gap: 6px;
+      }
+
+      .mode-btn {
+        font-size: 11px;
+      }
+
+      .field {
+        padding: 9px;
+      }
+
+      .result {
+        gap: 6px;
+      }
+
+      .result-item {
+        padding: 9px 7px;
+      }
+    }
+
+
+    /* v1.8.19 mobile scroll fix: override previous one-screen rules */
+    @media (max-width: 720px) {
+      html,
+      body {
+        height: auto !important;
+        min-height: 100% !important;
+        max-height: none !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        position: static !important;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      body {
+        min-height: 100dvh !important;
+        overscroll-behavior-y: auto;
+      }
+
+      .app,
+      .calculator-card,
+      .card-main,
+      .card-side {
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+      }
+
+      .calculator-card {
+        grid-template-rows: auto !important;
+      }
+
+      .rate-settings[open] {
+        max-height: none !important;
+        overflow: visible !important;
+      }
+
+      .float-lang {
+        position: fixed;
+      }
+    }
+
+
+    /* v1.8.19 simplify header and mobile layout */
+    .header {
+      margin-bottom: 6px;
+    }
+
+    .title-row {
+      min-height: 22px;
+    }
+
+    .version-badge {
+      height: 22px;
+      padding: 0 10px;
+      font-size: 11px;
+    }
+
+    @media (max-width: 720px) {
+      html,
+      body {
+        height: auto !important;
+        min-height: 100% !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+      }
+
+      body {
+        padding: calc(8px + env(safe-area-inset-top)) calc(9px + env(safe-area-inset-right)) calc(14px + env(safe-area-inset-bottom)) calc(9px + env(safe-area-inset-left));
+      }
+
+      .header {
+        margin-bottom: 6px;
+      }
+
+      .title-row {
+        min-height: 20px;
+        gap: 0;
+      }
+
+      .version-badge {
+        height: 20px;
+        padding: 0 9px;
+        font-size: 10px;
+        line-height: 20px;
+      }
+
+      .calculator-card {
+        padding: 10px;
+        gap: 9px;
+        border-radius: 20px;
+        overflow: visible !important;
+      }
+
+      .card-main,
+      .card-side {
+        gap: 8px;
+        overflow: visible !important;
+      }
+
+      .mode-box {
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+
+      .mode-btn {
+        min-height: 35px;
+        padding: 7px 4px;
+        border-radius: 12px;
+        font-size: 11px;
+      }
+
+      .currency-panel {
+        margin-bottom: 8px;
+        padding: 9px;
+        border-radius: 15px;
+      }
+
+      .currency-main {
+        gap: 7px;
+      }
+
+      .currency-select-wrap,
+      .inline-rate {
+        gap: 7px;
+      }
+
+      .currency-select-wrap > span,
+      .inline-rate > span {
+        flex-basis: 68px;
+        font-size: 11px;
+      }
+
+      input,
+      select,
+      textarea {
+        height: 40px;
+        min-height: 40px;
+        border-radius: 12px;
+        font-size: 16px !important;
+      }
+
+      .rate-settings {
+        margin-top: 6px;
+      }
+
+      .rate-settings summary {
+        min-height: 30px;
+        font-size: 11px;
+      }
+
+      .rate-grid {
+        margin-top: 6px;
+        gap: 6px;
+      }
+
+      .rate-grid label span {
+        font-size: 10px;
+      }
+
+      .rate-grid input {
+        height: 36px;
+        min-height: 36px;
+      }
+
+      .rate-hint,
+      .rate-source-note {
+        display: none !important;
+      }
+
+      .rate-actions {
+        margin-top: 6px;
+        gap: 7px;
+      }
+
+      .rate-refresh-btn {
+        min-height: 34px;
+        padding: 7px 9px;
+        font-size: 11px;
+      }
+
+      .auto-refresh-toggle {
+        font-size: 10px;
+      }
+
+      .rate-status {
+        margin-top: 5px;
+        font-size: 10px;
+        line-height: 1.25;
+      }
+
+      .grid {
+        gap: 7px;
+      }
+
+      .field {
+        padding: 8px;
+        border-radius: 14px;
+      }
+
+      .field label {
+        margin-bottom: 5px;
+        font-size: 11px;
+      }
+
+      .date-range {
+        margin-top: 6px;
+        gap: 7px;
+      }
+
+      .date-field span,
+      .term-inline-label {
+        margin-bottom: 3px;
+        font-size: 10px;
+      }
+
+      .date-field input {
+        height: 38px;
+        min-height: 38px;
+      }
+
+      .term-input-block {
+        margin-top: 6px;
+      }
+
+      .base-days {
+        margin-top: 8px;
+        padding: 7px 9px;
+        border-radius: 14px;
+        font-size: 11px;
+      }
+
+      .base-days div {
+        display: none;
+      }
+
+      .base-days select {
+        margin-left: auto;
+        flex: 0 0 112px;
+        height: 38px;
+        min-height: 38px;
+      }
+
+      .actions {
+        margin-top: 8px;
+        gap: 7px;
+      }
+
+      button {
+        min-height: 40px;
+        padding: 8px 10px;
+        border-radius: 13px;
+        font-size: 12px;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        height: 40px;
+      }
+
+      .message {
+        margin-top: 7px;
+        padding: 8px 9px;
+        border-radius: 13px;
+        font-size: 11px;
+        line-height: 1.3;
+      }
+
+      .result {
+        gap: 7px;
+      }
+
+      .result-item {
+        min-height: 58px;
+        padding: 9px 8px;
+        border-radius: 15px;
+      }
+
+      .result-item span {
+        margin-bottom: 4px;
+        font-size: 9px;
+      }
+
+      .result-item strong {
+        font-size: 14px;
+        line-height: 1.15;
+      }
+
+      .money-cny {
+        font-size: 9px;
+      }
+
+      .cny-compare-card {
+        min-height: 90px;
+      }
+
+      .cny-compare-card strong {
+        font-size: 11px;
+      }
+
+      .cny-compare-line {
+        font-size: 10px;
+      }
+
+      .cny-compare-rate {
+        font-size: 9px;
+      }
+
+      .cny-change {
+        margin-top: 4px;
+        padding-top: 4px;
+        font-size: 11px;
+      }
+
+      .formula,
+      .example-box {
+        display: none !important;
+      }
+
+      .float-lang {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+      }
+    }
+
+
+    /* v1.8.19 version badge moved after Term button */
+    .mode-version-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+      min-height: 38px;
+      padding: 0 11px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.08);
+      color: #475569;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    @media (min-width: 721px) {
+      .mode-box {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+        align-items: stretch;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header {
+        display: none !important;
+      }
+
+      .mode-box {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: center;
+      }
+
+      .mode-version-badge {
+        grid-column: 4;
+        justify-self: center;
+        align-self: center;
+        min-height: 18px;
+        height: 18px;
+        margin-top: -4px;
+        padding: 0 7px;
+        border-radius: 999px;
+        font-size: 9px;
+        line-height: 18px;
+        background: rgba(37, 99, 235, 0.09);
+        color: #2563eb;
+      }
+    }
+
+
+    /* v1.8.19 mode-version and base-days placement */
+    .mode-version-badge {
+      background: rgba(37, 99, 235, 0.09) !important;
+      color: #2563eb !important;
+    }
+
+    .field .base-days {
+      margin-top: 10px;
+      padding: 8px 9px;
+      border-radius: 12px;
+      gap: 8px;
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .field .base-days select {
+      height: 34px;
+      min-height: 34px;
+      max-width: 120px;
+      font-size: 13px;
+      padding: 0 8px;
+    }
+
+    @media (max-width: 720px) {
+      .mode-box {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) auto !important;
+        gap: 5px !important;
+        align-items: center !important;
+      }
+
+      .mode-btn {
+        min-width: 0;
+        padding-left: 2px;
+        padding-right: 2px;
+        font-size: 10.5px;
+        white-space: nowrap;
+      }
+
+      .mode-version-badge {
+        grid-column: auto !important;
+        grid-row: auto !important;
+        justify-self: center !important;
+        align-self: center !important;
+        height: 18px !important;
+        min-height: 18px !important;
+        margin-top: 0 !important;
+        padding: 0 6px !important;
+        font-size: 8.5px !important;
+        line-height: 18px !important;
+        border-radius: 999px !important;
+      }
+
+      .field .base-days {
+        margin-top: 7px;
+        padding: 6px 7px;
+        border-radius: 11px;
+        gap: 6px;
+        font-size: 10px;
+      }
+
+      .field .base-days div {
+        display: none !important;
+      }
+
+      .field .base-days select {
+        margin-left: 0;
+        width: 100%;
+        max-width: none;
+        height: 34px;
+        min-height: 34px;
+        font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .mode-box {
+        gap: 4px !important;
+      }
+
+      .mode-btn {
+        font-size: 10px;
+      }
+
+      .mode-version-badge {
+        padding: 0 5px !important;
+        font-size: 8px !important;
+      }
+    }
+
+
+    /* v1.8.19 mobile: move annual basis to the right of principal */
+    @media (max-width: 720px) {
+      .grid > .field:first-child {
+        grid-column: 1 / -1 !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 112px !important;
+        column-gap: 8px !important;
+        row-gap: 6px !important;
+        align-items: end !important;
+      }
+
+      .grid > .field:first-child > label {
+        grid-column: 1 / -1 !important;
+        margin-bottom: 0 !important;
+      }
+
+      .grid > .field:first-child > input#principal {
+        grid-column: 1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .grid > .field:first-child > .base-days {
+        grid-column: 2 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        min-height: 0 !important;
+      }
+
+      .grid > .field:first-child > .base-days div {
+        display: none !important;
+      }
+
+      .grid > .field:first-child > .base-days select {
+        width: 100% !important;
+        max-width: none !important;
+        height: 40px !important;
+        min-height: 40px !important;
+        margin: 0 !important;
+        font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .grid > .field:first-child {
+        grid-template-columns: minmax(0, 1fr) 98px !important;
+        column-gap: 6px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
   <div class="app">
-    <div class="header">
-      <div class="title-row">
-        <h1 data-i18n="title">定存计算器</h1>
-        <span class="version-badge" id="appVersion">v1.8.13</span>
-      </div>
-    </div>
-
-    <div class="calculator-card">
+<div class="calculator-card">
       <main class="card-main">
         <div class="mode-box">
           <button class="mode-btn active" data-target="rate" data-i18n="mode.rate">求年利率</button>
           <button class="mode-btn" data-target="interest" data-i18n="mode.interest">算利息</button>
           <button class="mode-btn" data-target="principal" data-i18n="mode.principal">求本金</button>
           <button class="mode-btn" data-target="term" data-i18n="mode.term">求期限</button>
+          <span class="mode-version-badge" id="appVersion">v1.8.19</span>
         </div>
 
 
@@ -1976,6 +2921,14 @@
               <span class="hint">Principal</span>
             </label>
             <input id="principal" type="number" min="0" step="0.01" data-i18n-placeholder="placeholder.principal" placeholder="例如：100000" />
+          
+            <div class="base-days">
+                      <div data-i18n="baseDays.note">年化口径：按银行规则选择 365 / 360 天。</div>
+                      <select id="baseDays" aria-label="Annual basis days">
+                        <option value="365" data-i18n="baseDays.365">365 天</option>
+                        <option value="360" data-i18n="baseDays.360">360 天</option>
+                      </select>
+                    </div>
           </div>
 
           <div class="field term-field">
@@ -2024,14 +2977,6 @@
           </div>
         </div>
 
-        <div class="base-days">
-          <div data-i18n="baseDays.note">年化口径：按银行规则选择 365 / 360 天。</div>
-          <select id="baseDays" aria-label="Annual basis days">
-            <option value="365" data-i18n="baseDays.365">365 天</option>
-            <option value="360" data-i18n="baseDays.360">360 天</option>
-          </select>
-        </div>
-
         <div class="actions">
           <button class="primary-btn" id="calculateBtn" data-i18n="button.calculate">开始计算</button>
           <button class="secondary-btn" id="clearBtn" data-i18n="button.clear">清空</button>
@@ -2076,7 +3021,7 @@
   <button class="float-lang" id="langToggle" type="button" aria-label="Switch language">EN</button>
 
   <script>
-    const APP_VERSION = "v1.8.13";
+    const APP_VERSION = "v1.8.19";
     const LANG_STORAGE_KEY = "depositCalculatorLang";
     const SETTINGS_STORAGE_KEY = "depositCalculatorSettings";
     const AUTO_REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000;
