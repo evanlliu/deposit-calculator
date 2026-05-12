@@ -1126,7 +1126,7 @@
     <div class="header">
       <div class="title-row">
         <h1 data-i18n="title">定存计算器</h1>
-        <span class="version-badge" id="appVersion">v1.8.3</span>
+        <span class="version-badge" id="appVersion">v1.8.10</span>
       </div>
     </div>
 
@@ -1293,7 +1293,7 @@
   <button class="float-lang" id="langToggle" type="button" aria-label="Switch language">EN</button>
 
   <script>
-    const APP_VERSION = "v1.8.3";
+    const APP_VERSION = "v1.8.10";
     const LANG_STORAGE_KEY = "depositCalculatorLang";
     const SETTINGS_STORAGE_KEY = "depositCalculatorSettings";
     const AUTO_REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000;
@@ -1692,6 +1692,14 @@
         });
       }
 
+      function formatFxRate(value) {
+        if (!Number.isFinite(value)) return "-";
+        return value.toLocaleString(currentLang === "zh" ? "zh-CN" : "en-US", {
+          minimumFractionDigits: 6,
+          maximumFractionDigits: 6
+        });
+      }
+
       function formatFxNumber(value) {
         if (!Number.isFinite(value)) return "-";
         return trimTrailingZeros(value.toFixed(4));
@@ -1862,7 +1870,7 @@
         } else {
           label = resultText.fxRate;
         }
-        return '<div class="cny-compare-rate">' + selectedDate + ' · ' + label + ': 1 ' + selectedCurrency + ' = ' + formatCurrencyAmount(rate, "CNY") + '</div>';
+        return '<div class="cny-compare-rate">' + selectedDate + ' · ' + label + ': 1 ' + selectedCurrency + ' = ' + "¥" + formatFxRate(rate) + '</div>';
       }
 
       function renderCnyCompareResult(startCny, endCny, meta) {
