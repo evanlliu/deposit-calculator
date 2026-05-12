@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>定存计算器</title>
   <!-- iOS / PWA：添加到主屏幕后以独立 App 方式打开，不显示 Safari 地址栏 -->
   <meta name="theme-color" content="#2563eb" />
@@ -1464,7 +1464,7 @@
       }
     }
 
-    /* v1.8.12 mobile fit */
+    /* v1.8.13 mobile fit */
 
     @media (max-width: 720px) {
       html,
@@ -1878,6 +1878,30 @@
     }
 
 
+
+    /* v1.8.13 iOS Safari no input zoom */
+    @media (max-width: 720px) {
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        touch-action: manipulation;
+      }
+
+      input,
+      select,
+      textarea {
+        font-size: 16px !important;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        font-size: 16px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1885,7 +1909,7 @@
     <div class="header">
       <div class="title-row">
         <h1 data-i18n="title">定存计算器</h1>
-        <span class="version-badge" id="appVersion">v1.8.12</span>
+        <span class="version-badge" id="appVersion">v1.8.13</span>
       </div>
     </div>
 
@@ -2052,7 +2076,7 @@
   <button class="float-lang" id="langToggle" type="button" aria-label="Switch language">EN</button>
 
   <script>
-    const APP_VERSION = "v1.8.12";
+    const APP_VERSION = "v1.8.13";
     const LANG_STORAGE_KEY = "depositCalculatorLang";
     const SETTINGS_STORAGE_KEY = "depositCalculatorSettings";
     const AUTO_REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000;
