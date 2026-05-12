@@ -1,4 +1,4 @@
-const APP_VERSION = "v1.5.0";
+const APP_VERSION = "v1.8.3";
 const CACHE_NAME = `deposit-calculator-pwa-${APP_VERSION}`;
 const APP_ASSETS = [
   "./",

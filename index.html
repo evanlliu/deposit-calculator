@@ -362,6 +362,237 @@
       line-height: 1.2;
     }
 
+
+
+    .currency-panel {
+      margin-bottom: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.07), rgba(14, 165, 233, 0.06));
+      border: 1px solid rgba(191, 219, 254, 0.9);
+    }
+
+    .currency-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .currency-select-wrap,
+    .inline-rate {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .currency-select-wrap > span,
+    .inline-rate > span {
+      color: #475569;
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .currency-select-wrap select {
+      max-width: none;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .inline-rate input {
+      width: 94px;
+      flex: 0 0 94px;
+      text-align: right;
+      font-weight: 750;
+      color: #0f172a;
+    }
+
+    .inline-rate input:disabled {
+      color: #64748b;
+      background: #f1f5f9;
+    }
+
+    .rate-settings {
+      margin-top: 8px;
+    }
+
+    .rate-settings summary {
+      cursor: pointer;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 800;
+      user-select: none;
+    }
+
+    .rate-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .rate-grid label {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .rate-grid input {
+      height: 34px;
+      border-radius: 11px;
+      font-size: 13px;
+      padding: 0 8px;
+    }
+
+    .rate-hint {
+      margin-top: 7px;
+      color: #64748b;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .rate-actions {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .rate-refresh-btn {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      box-shadow: none;
+      min-width: 0;
+    }
+
+    .auto-refresh-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 750;
+      user-select: none;
+      line-height: 1.2;
+    }
+
+    .auto-refresh-toggle input {
+      width: 15px;
+      height: 15px;
+      min-width: 15px;
+      padding: 0;
+      border-radius: 4px;
+      accent-color: #2563eb;
+    }
+
+    .rate-status {
+      margin-top: 7px;
+      color: #475569;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .rate-status.success {
+      color: #047857;
+    }
+
+    .rate-status.error {
+      color: #b91c1c;
+    }
+
+    .rate-source-note {
+      margin-top: 4px;
+      color: #94a3b8;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    .money-main,
+    .money-cny {
+      display: block;
+    }
+
+    .money-cny {
+      margin-top: 4px;
+      color: #bfdbfe;
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.25;
+    }
+
+    .cny-compare-card strong {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .cny-compare-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 3px;
+      color: #dbeafe;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .cny-compare-line:first-child {
+      margin-top: 0;
+    }
+
+    .cny-compare-line .label {
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+
+    .cny-compare-rate {
+      margin-top: 2px;
+      color: #93c5fd;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .cny-change {
+      margin-top: 5px;
+      padding-top: 5px;
+      border-top: 1px solid rgba(203, 213, 225, 0.16);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .cny-change.profit { color: #86efac; }
+    .cny-change.loss { color: #fca5a5; }
+    .cny-change.flat { color: #cbd5e1; }
+
+    .fx-mini-note {
+      margin-top: 4px;
+      color: #94a3b8;
+      font-size: 10px;
+      font-weight: 650;
+      line-height: 1.25;
+    }
+
+    .term-input-block {
+      margin-top: 8px;
+    }
+
+    .term-inline-label {
+      display: block;
+      margin-bottom: 4px;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
     .float-lang {
       position: fixed;
       right: calc(18px + env(safe-area-inset-right));
@@ -418,7 +649,7 @@
       }
 
       .result {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
 
@@ -486,6 +717,83 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 7px;
         margin-bottom: 0;
+      }
+
+
+      .currency-panel {
+        margin-bottom: 0;
+        padding: 8px 9px;
+        border-radius: 16px;
+      }
+
+      .currency-main {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .currency-select-wrap,
+      .inline-rate {
+        gap: 7px;
+      }
+
+      .currency-select-wrap > span,
+      .inline-rate > span {
+        font-size: 11px;
+      }
+
+      .currency-select-wrap select {
+        height: 35px;
+        font-size: 13px;
+      }
+
+      .inline-rate input {
+        height: 35px;
+        width: 88px;
+        flex-basis: 88px;
+        font-size: 13px;
+      }
+
+      .rate-settings {
+        margin-top: 6px;
+      }
+
+      .rate-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .rate-grid input {
+        height: 32px;
+        font-size: 12px;
+      }
+
+      .rate-hint {
+        font-size: 10px;
+        margin-top: 6px;
+      }
+
+      .rate-actions {
+        margin-top: 6px;
+        gap: 6px;
+      }
+
+      .rate-refresh-btn {
+        height: 32px;
+        padding: 0 9px;
+        font-size: 11px;
+      }
+
+      .auto-refresh-toggle {
+        font-size: 10px;
+      }
+
+      .rate-status {
+        margin-top: 5px;
+        font-size: 10px;
+      }
+
+      .rate-source-note {
+        font-size: 9px;
       }
 
       .mode-btn {
@@ -625,7 +933,7 @@
       }
 
       .result {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 7px;
       }
 
@@ -644,6 +952,17 @@
       .result-item strong {
         font-size: 16px;
         line-height: 1.1;
+      }
+
+      .cny-compare-card strong {
+        font-size: 12px;
+        line-height: 1.3;
+      }
+
+      .cny-compare-line,
+      .cny-change,
+      .cny-compare-rate {
+        font-size: 11px;
       }
 
       .formula {
@@ -670,7 +989,8 @@
         white-space: normal;
       }
 
-      .float-lang {
+
+    .float-lang {
         right: calc(16px + env(safe-area-inset-right));
         bottom: calc(16px + env(safe-area-inset-bottom));
         min-width: 50px;
@@ -698,6 +1018,22 @@
       .mode-btn {
         height: 37px;
         font-size: 11px;
+      }
+
+
+      .currency-panel {
+        padding: 7px 8px;
+      }
+
+      .currency-select-wrap select,
+      .inline-rate input {
+        height: 32px;
+        font-size: 12px;
+      }
+
+      .inline-rate input {
+        width: 78px;
+        flex-basis: 78px;
       }
 
       .grid {
@@ -743,6 +1079,16 @@
         font-size: 14px;
       }
 
+      .cny-compare-card strong {
+        font-size: 11px;
+      }
+
+      .cny-compare-line,
+      .cny-change,
+      .cny-compare-rate {
+        font-size: 11px;
+      }
+
       .formula {
         font-size: 11px;
         padding: 8px;
@@ -780,7 +1126,7 @@
     <div class="header">
       <div class="title-row">
         <h1 data-i18n="title">定存计算器</h1>
-        <span class="version-badge" id="appVersion">v1.5.0</span>
+        <span class="version-badge" id="appVersion">v1.8.3</span>
       </div>
     </div>
 
@@ -793,6 +1139,53 @@
           <button class="mode-btn" data-target="term" data-i18n="mode.term">求期限</button>
         </div>
 
+
+        <div class="currency-panel">
+          <div class="currency-main">
+            <div class="currency-select-wrap">
+              <span data-i18n="currency.label">计算币种</span>
+              <select id="currencySelect" aria-label="Currency">
+                <option value="CNY" data-i18n="currency.option.CNY">CNY 人民币</option>
+                <option value="USD" data-i18n="currency.option.USD">USD 美元</option>
+                <option value="TRY" data-i18n="currency.option.TRY">TRY 里拉</option>
+                <option value="MXN" data-i18n="currency.option.MXN">MXN 墨西哥比索</option>
+              </select>
+            </div>
+            <div class="inline-rate" id="inlineRateBox">
+              <span id="inlineRatePrefix">1 CNY =</span>
+              <input id="selectedRate" type="number" min="0" step="0.0001" inputmode="decimal" aria-label="Exchange rate to CNY" />
+              <span data-i18n="currency.cnyUnit">CNY</span>
+            </div>
+          </div>
+          <details class="rate-settings" id="rateSettings">
+            <summary data-i18n="currency.settings">汇率设置</summary>
+            <div class="rate-grid">
+              <label>
+                <span data-i18n="currency.usdRate">1 USD = CNY</span>
+                <input class="rate-input" data-currency="USD" type="number" min="0" step="0.0001" inputmode="decimal" />
+              </label>
+              <label>
+                <span data-i18n="currency.tryRate">1 TRY = CNY</span>
+                <input class="rate-input" data-currency="TRY" type="number" min="0" step="0.0001" inputmode="decimal" />
+              </label>
+              <label>
+                <span data-i18n="currency.mxnRate">1 MXN = CNY</span>
+                <input class="rate-input" data-currency="MXN" type="number" min="0" step="0.0001" inputmode="decimal" />
+              </label>
+            </div>
+            <div class="rate-hint" data-i18n="currency.rateHint">汇率用于折算人民币，可自动刷新，也可按银行实际结算汇率手动填写；人民币固定为 1。</div>
+          </details>
+          <div class="rate-actions">
+            <button class="rate-refresh-btn" id="refreshRatesBtn" type="button" data-i18n="currency.refresh">刷新汇率</button>
+            <label class="auto-refresh-toggle">
+              <input id="autoRefreshToggle" type="checkbox" />
+              <span data-i18n="currency.autoRefresh">打开页面自动刷新</span>
+            </label>
+          </div>
+          <div class="rate-status" id="rateStatus"></div>
+          <div class="rate-source-note" data-i18n="currency.apiNote">自动汇率为公开参考汇率，实际兑换以银行结算为准。</div>
+        </div>
+
         <div class="grid">
           <div class="field">
             <label for="principal">
@@ -803,18 +1196,10 @@
           </div>
 
           <div class="field term-field">
-            <label for="term">
-              <span data-i18n="field.term">存款期限</span>
-              <span class="hint">Term</span>
+            <label for="startDate">
+              <span data-i18n="field.dateTerm">日期与期限</span>
+              <span class="hint">Date / Term</span>
             </label>
-            <div class="input-row">
-              <input id="term" type="number" min="0" step="0.01" data-i18n-placeholder="placeholder.term" placeholder="例如：35" />
-              <select id="termUnit" aria-label="Term unit">
-                <option value="day" data-i18n="unit.day">天</option>
-                <option value="month" data-i18n="unit.month">月</option>
-                <option value="year" data-i18n="unit.year">年</option>
-              </select>
-            </div>
             <div class="date-range" aria-label="根据开始日期和结束日期自动计算存款天数">
               <div class="date-field">
                 <span data-i18n="date.start">开始日期</span>
@@ -825,7 +1210,18 @@
                 <input id="endDate" type="date" />
               </div>
             </div>
-            <div class="date-note" data-i18n="date.note">选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入上方。</div>
+            <div class="term-input-block">
+              <span class="term-inline-label" data-i18n="field.term">存款期限</span>
+              <div class="input-row">
+                <input id="term" type="number" min="0" step="0.01" data-i18n-placeholder="placeholder.term" placeholder="例如：35" />
+                <select id="termUnit" aria-label="Term unit">
+                  <option value="day" data-i18n="unit.day">天</option>
+                  <option value="month" data-i18n="unit.month">月</option>
+                  <option value="year" data-i18n="unit.year">年</option>
+                </select>
+              </div>
+            </div>
+            <div class="date-note" data-i18n="date.note">选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入下方。</div>
           </div>
 
           <div class="field">
@@ -875,10 +1271,14 @@
             <span data-i18n="result.total">本息合计</span>
             <strong id="resultTotal">-</strong>
           </div>
+          <div class="result-item cny-compare-card">
+            <span data-i18n="result.cnyCompare">人民币变化</span>
+            <strong id="resultCnyCompare">-</strong>
+          </div>
         </div>
 
         <div class="formula" data-i18n="formula">
-          公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />例：100,000 元，35 天，利息 225.34，年化 365 天，年利率 ≈ 2.35%。
+          公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。金额按所选币种计算，结果折算成人民币。
         </div>
 
         <div class="example-box">
@@ -893,8 +1293,10 @@
   <button class="float-lang" id="langToggle" type="button" aria-label="Switch language">EN</button>
 
   <script>
-    const APP_VERSION = "v1.5.0";
+    const APP_VERSION = "v1.8.3";
     const LANG_STORAGE_KEY = "depositCalculatorLang";
+    const SETTINGS_STORAGE_KEY = "depositCalculatorSettings";
+    const AUTO_REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000;
     const isStandaloneMode = window.navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
     if (isStandaloneMode) {
       document.documentElement.classList.add("standalone-mode");
@@ -913,6 +1315,18 @@
     document.addEventListener("DOMContentLoaded", function () {
       let currentTarget = "rate";
       let currentLang = getInitialLang();
+      const defaultRates = { CNY: 1, USD: 7.2, TRY: 0.22, MXN: 0.39 };
+      let selectedCurrency = "CNY";
+      let rates = Object.assign({}, defaultRates);
+      let rateMeta = {
+        updatedAt: "",
+        fetchedAt: "",
+        source: "manual",
+        apiDate: "",
+        lastError: "",
+        autoRefresh: true
+      };
+      let fxCompareRequestId = 0;
 
       const i18n = {
         zh: {
@@ -927,6 +1341,7 @@
           },
           field: {
             principal: "本金",
+            dateTerm: "日期与期限",
             term: "存款期限",
             rate: "年利率",
             interest: "利息"
@@ -954,12 +1369,40 @@
           date: {
             start: "开始日期",
             end: "结束日期",
-            note: "选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入上方。"
+            note: "选择开始和结束日期后，自动按“结束日期 - 开始日期”计算天数并填入下方。"
           },
           baseDays: {
             note: "年化口径：按银行规则选择 365 / 360 天。",
             365: "365 天",
             360: "360 天"
+          },
+          currency: {
+            label: "计算币种",
+            cnyUnit: "CNY",
+            settings: "汇率设置",
+            rateHint: "汇率用于折算人民币，可自动刷新，也可按银行实际结算汇率手动填写；人民币固定为 1。",
+            refresh: "刷新汇率",
+            autoRefresh: "打开页面自动刷新",
+            refreshing: "正在刷新汇率...",
+            refreshSuccess: function (source, time) { return "汇率已更新：" + time + " · " + source; },
+            refreshFailed: "汇率刷新失败，已保留当前本地汇率。",
+            localRate: "当前使用本地/手动汇率",
+            lastUpdated: function (time, source) { return "汇率更新时间：" + time + " · " + source; },
+            neverUpdated: "汇率尚未自动更新，当前使用默认/手动汇率。",
+            apiNote: "自动汇率为公开参考汇率，实际兑换以银行结算为准。",
+            sourceManual: "手动汇率",
+            sourceExchangeRateApi: "ExchangeRate-API",
+            sourceFrankfurter: "Frankfurter",
+            usdRate: "1 USD = CNY",
+            tryRate: "1 TRY = CNY",
+            mxnRate: "1 MXN = CNY",
+            invalidRate: "请填写有效汇率，必须大于 0。",
+            option: {
+              CNY: "CNY 人民币",
+              USD: "USD 美元",
+              TRY: "TRY 里拉",
+              MXN: "MXN 墨西哥比索"
+            }
           },
           button: {
             calculate: "开始计算",
@@ -968,9 +1411,22 @@
           result: {
             rate: "年利率",
             interest: "利息",
-            total: "合计"
+            total: "合计",
+            cnyCompare: "人民币变化",
+            start: "开始",
+            end: "结束",
+            profit: "赚",
+            loss: "亏",
+            flat: "持平",
+            estimated: "估",
+            loadingFx: "正在计算日期汇率...",
+            needDates: "选择起止日期后显示",
+            fxFallback: "部分日期按当前汇率估算",
+            fxRate: "汇率",
+            useRateDate: "取",
+            currentEstimatedRate: "当前估算汇率"
           },
-          formula: "公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。<br />例：100,000 元，35 天，利息 225.34，年化 365 天，年利率 ≈ 2.35%。",
+          formula: "公式：利息 = 本金 × 年利率 × 存款天数 ÷ 年化天数。金额按所选币种计算，结果折算成人民币。",
           example: {
             rate: "示例：本金+期限+利息 → 年利率",
             interest: "示例：本金+期限+年利率 → 利息",
@@ -997,6 +1453,7 @@
           },
           field: {
             principal: "Principal",
+            dateTerm: "Dates & Term",
             term: "Term",
             rate: "Annual Rate",
             interest: "Interest"
@@ -1031,6 +1488,34 @@
             365: "365 days",
             360: "360 days"
           },
+          currency: {
+            label: "Currency",
+            cnyUnit: "CNY",
+            settings: "Exchange Rates",
+            rateHint: "Rates are used to convert to CNY. They can be auto-refreshed or edited manually based on your bank's settlement rate. CNY is fixed at 1.",
+            refresh: "Refresh rates",
+            autoRefresh: "Auto-refresh on open",
+            refreshing: "Refreshing exchange rates...",
+            refreshSuccess: function (source, time) { return "Rates updated: " + time + " · " + source; },
+            refreshFailed: "Failed to refresh rates. Current local rates were kept.",
+            localRate: "Using local/manual exchange rates",
+            lastUpdated: function (time, source) { return "Rate updated: " + time + " · " + source; },
+            neverUpdated: "Rates have not been auto-refreshed yet. Default/manual rates are being used.",
+            apiNote: "Auto rates are public reference rates; actual conversion should follow your bank's settlement rate.",
+            sourceManual: "Manual rate",
+            sourceExchangeRateApi: "ExchangeRate-API",
+            sourceFrankfurter: "Frankfurter",
+            usdRate: "1 USD = CNY",
+            tryRate: "1 TRY = CNY",
+            mxnRate: "1 MXN = CNY",
+            invalidRate: "Please enter a valid exchange rate greater than 0.",
+            option: {
+              CNY: "CNY · Chinese Yuan",
+              USD: "USD · US Dollar",
+              TRY: "TRY · Turkish Lira",
+              MXN: "MXN · Mexican Peso"
+            }
+          },
           button: {
             calculate: "Calculate",
             clear: "Clear"
@@ -1038,9 +1523,22 @@
           result: {
             rate: "Annual Rate",
             interest: "Interest",
-            total: "Total"
+            total: "Total",
+            cnyCompare: "CNY Change",
+            start: "Start",
+            end: "End",
+            profit: "Gain",
+            loss: "Loss",
+            flat: "Flat",
+            estimated: "est.",
+            loadingFx: "Loading date rates...",
+            needDates: "Shown after dates selected",
+            fxFallback: "Some dates use current-rate estimates",
+            fxRate: "Rate",
+            useRateDate: "using",
+            currentEstimatedRate: "current estimated rate"
           },
-          formula: "Formula: Interest = Principal × Annual Rate × Term Days ÷ Annual Basis Days.<br />Example: 100,000, 35 days, interest 225.34, 365-day basis, rate ≈ 2.35%.",
+          formula: "Formula: Interest = Principal × Annual Rate × Term Days ÷ Annual Basis Days. Amounts are calculated in the selected currency and converted to CNY.",
           example: {
             rate: "Example: Principal + Term + Interest → Rate",
             interest: "Example: Principal + Term + Rate → Interest",
@@ -1082,6 +1580,489 @@
         return value === undefined || value === null ? path : value;
       }
 
+
+      function loadSettings() {
+        try {
+          const raw = localStorage.getItem(SETTINGS_STORAGE_KEY);
+          if (!raw) return;
+          const saved = JSON.parse(raw);
+          if (saved && saved.currency && defaultRates[saved.currency] !== undefined) {
+            selectedCurrency = saved.currency;
+          }
+          if (saved && saved.rates && typeof saved.rates === "object") {
+            Object.keys(defaultRates).forEach(function (code) {
+              const value = Number(saved.rates[code]);
+              if (Number.isFinite(value) && value > 0) {
+                rates[code] = value;
+              }
+            });
+          }
+          if (saved && saved.rateMeta && typeof saved.rateMeta === "object") {
+            rateMeta = Object.assign(rateMeta, saved.rateMeta);
+          } else if (saved && saved.rateUpdatedAt) {
+            rateMeta.updatedAt = saved.rateUpdatedAt;
+            rateMeta.source = "manual";
+          }
+          rateMeta.autoRefresh = saved.autoRefresh === undefined ? rateMeta.autoRefresh : saved.autoRefresh !== false;
+          rates.CNY = 1;
+        } catch (error) {
+          rates = Object.assign({}, defaultRates);
+          selectedCurrency = "CNY";
+        }
+      }
+
+      function saveSettings(metaUpdate) {
+        rates.CNY = 1;
+        if (metaUpdate && typeof metaUpdate === "object") {
+          rateMeta = Object.assign(rateMeta, metaUpdate);
+        }
+        localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify({
+          currency: selectedCurrency,
+          rates: rates,
+          autoRefresh: rateMeta.autoRefresh !== false,
+          rateUpdatedAt: rateMeta.updatedAt || "",
+          rateMeta: rateMeta
+        }));
+      }
+
+      function sourceLabel(source) {
+        if (source === "exchange-rate-api") return i18n[currentLang].currency.sourceExchangeRateApi;
+        if (source === "frankfurter") return i18n[currentLang].currency.sourceFrankfurter;
+        if (source === "exchange-api") return "Exchange API";
+        return i18n[currentLang].currency.sourceManual;
+      }
+
+      function formatDateTime(value) {
+        if (!value) return "-";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return value;
+        return date.toLocaleString(currentLang === "zh" ? "zh-CN" : "en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false
+        });
+      }
+
+      function setRateStatus(type, text) {
+        const status = $("#rateStatus");
+        if (!status) return;
+        status.classList.remove("success", "error");
+        if (type) status.classList.add(type);
+        status.textContent = text;
+      }
+
+      function renderRateStatus() {
+        const source = sourceLabel(rateMeta.source);
+        if (rateMeta.lastError) {
+          setRateStatus("error", i18n[currentLang].currency.refreshFailed);
+          return;
+        }
+        if (rateMeta.updatedAt) {
+          setRateStatus(rateMeta.source === "manual" ? "" : "success", i18n[currentLang].currency.lastUpdated(formatDateTime(rateMeta.updatedAt), source));
+        } else {
+          setRateStatus("", i18n[currentLang].currency.neverUpdated);
+        }
+      }
+
+      function shouldAutoRefreshRates() {
+        if (rateMeta.autoRefresh === false) return false;
+        if (navigator.onLine === false) return false;
+        const lastTime = Date.parse(rateMeta.fetchedAt || rateMeta.updatedAt || "");
+        if (!Number.isFinite(lastTime)) return true;
+        return Date.now() - lastTime > AUTO_REFRESH_INTERVAL_MS;
+      }
+
+      function getCurrencySymbol(currency) {
+        return {
+          CNY: "¥",
+          USD: "$",
+          TRY: "₺",
+          MXN: "MX$"
+        }[currency] || "";
+      }
+
+      function formatCurrencyAmount(value, currency) {
+        if (!Number.isFinite(value)) return "-";
+        return getCurrencySymbol(currency) + value.toLocaleString(currentLang === "zh" ? "zh-CN" : "en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      }
+
+      function formatFxNumber(value) {
+        if (!Number.isFinite(value)) return "-";
+        return trimTrailingZeros(value.toFixed(4));
+      }
+
+      function convertToCny(value) {
+        if (!Number.isFinite(value)) return null;
+        const rate = Number(rates[selectedCurrency]);
+        if (!Number.isFinite(rate) || rate <= 0) return null;
+        return value * rate;
+      }
+
+      function formatResultMoneyHtml(value) {
+        if (!Number.isFinite(value)) return "-";
+        const original = formatCurrencyAmount(value, selectedCurrency);
+        if (selectedCurrency === "CNY") {
+          return '<span class="money-main">' + original + '</span>';
+        }
+        const cnyValue = convertToCny(value);
+        const approxText = currentLang === "zh" ? "约 " : "≈ ";
+        return '<span class="money-main">' + original + '</span><span class="money-cny">' + approxText + formatCurrencyAmount(cnyValue, "CNY") + '</span>';
+      }
+
+      function localDateString(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return year + "-" + month + "-" + day;
+      }
+
+      function getCurrentCurrencyRateRecord(currency, rateDateText, estimated, hasFallback) {
+        return {
+          rate: Number(rates[currency]) || 1,
+          date: rateDateText || localDateString(new Date()),
+          source: currency === "CNY" ? "CNY" : "current",
+          estimated: estimated !== false,
+          fallback: hasFallback === true
+        };
+      }
+
+      function addDaysToDateText(dateText, days) {
+        const parts = (dateText || "").split("-").map(Number);
+        if (parts.length !== 3 || !parts.every(Number.isFinite)) return dateText;
+        const date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+        date.setUTCDate(date.getUTCDate() + days);
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+        const day = String(date.getUTCDate()).padStart(2, "0");
+        return year + "-" + month + "-" + day;
+      }
+
+      function parseFrankfurterRates(data) {
+        const items = [];
+        let apiDate = data && data.date ? data.date : "";
+        if (data && Array.isArray(data.rates)) {
+          data.rates.forEach(function (item) {
+            const rate = Number(item && item.rate);
+            if (item && item.quote && Number.isFinite(rate)) {
+              items.push({ quote: item.quote, base: item.base || "", rate: rate, date: item.date || apiDate || "" });
+              if (!apiDate && item.date) apiDate = item.date;
+            }
+          });
+        } else if (data && data.rates && typeof data.rates === "object") {
+          Object.keys(data.rates).forEach(function (code) {
+            const rate = Number(data.rates[code]);
+            if (Number.isFinite(rate)) {
+              items.push({ quote: code, base: data.base || "", rate: rate, date: data.date || apiDate || "" });
+            }
+          });
+        }
+        const rateMap = {};
+        items.forEach(function (item) {
+          rateMap[item.quote] = item.rate;
+        });
+        return { rates: rateMap, items: items, date: apiDate };
+      }
+
+      function fetchHistoricalFromExchangeApi(currency, dateText) {
+        const code = currency.toLowerCase();
+        const urls = [
+          "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@" + encodeURIComponent(dateText) + "/v1/currencies/" + code + ".min.json",
+          "https://" + encodeURIComponent(dateText) + ".currency-api.pages.dev/v1/currencies/" + code + ".min.json"
+        ];
+
+        function fetchUrl(index) {
+          if (index >= urls.length) {
+            return Promise.reject(new Error("Exchange API historical rate unavailable"));
+          }
+          return fetchJsonWithTimeout(urls[index], 9000).then(function (data) {
+            const baseData = data && data[code];
+            const rate = Number(baseData && baseData.cny);
+            if (!Number.isFinite(rate) || rate <= 0) {
+              throw new Error("Missing Exchange API CNY rate");
+            }
+            return {
+              rate: rate,
+              date: data.date || dateText,
+              source: "exchange-api",
+              estimated: false,
+              fallback: false
+            };
+          }).catch(function () {
+            return fetchUrl(index + 1);
+          });
+        }
+
+        return fetchUrl(0);
+      }
+
+      function fetchHistoricalFromFrankfurter(currency, dateText) {
+        const fromText = addDaysToDateText(dateText, -10);
+        const url = "https://api.frankfurter.dev/v2/rates?from=" + encodeURIComponent(fromText) + "&to=" + encodeURIComponent(dateText) + "&base=" + encodeURIComponent(currency) + "&quotes=CNY";
+        return fetchJsonWithTimeout(url, 9000).then(function (data) {
+          const parsed = parseFrankfurterRates(data);
+          const candidates = (parsed.items || []).filter(function (item) {
+            return item.quote === "CNY" && Number.isFinite(item.rate) && item.rate > 0 && (!item.date || item.date <= dateText);
+          }).sort(function (a, b) {
+            return String(a.date || "").localeCompare(String(b.date || ""));
+          });
+          const selected = candidates[candidates.length - 1];
+          if (!selected) {
+            throw new Error("Missing Frankfurter historical rate");
+          }
+          return {
+            rate: selected.rate,
+            date: selected.date || parsed.date || dateText,
+            source: "frankfurter",
+            estimated: false,
+            fallback: false
+          };
+        });
+      }
+
+      function fetchHistoricalCurrencyRateToCny(currency, dateText) {
+        if (!dateText || currency === "CNY") {
+          return Promise.resolve({ rate: 1, date: dateText || "", source: "CNY", estimated: false, fallback: false });
+        }
+
+        const todayText = localDateString(new Date());
+        if (dateText > todayText) {
+          return Promise.resolve(getCurrentCurrencyRateRecord(currency, todayText, true, false));
+        }
+
+        return fetchHistoricalFromExchangeApi(currency, dateText).catch(function () {
+          return fetchHistoricalFromFrankfurter(currency, dateText);
+        }).catch(function () {
+          return getCurrentCurrencyRateRecord(currency, todayText, true, true);
+        });
+      }
+
+      function renderCnyCompareLoading() {
+        const box = $("#resultCnyCompare");
+        if (box) box.textContent = i18n[currentLang].result.loadingFx;
+      }
+
+      function renderCnyComparePlaceholder() {
+        const box = $("#resultCnyCompare");
+        if (box) box.textContent = "-";
+      }
+
+      function buildHistoricalRateLine(selectedDate, rateDate, rate, estimated) {
+        const resultText = i18n[currentLang].result;
+        let label;
+        if (estimated) {
+          label = resultText.currentEstimatedRate;
+        } else if (rateDate && rateDate !== selectedDate) {
+          label = resultText.useRateDate + " " + rateDate + " " + resultText.fxRate;
+        } else {
+          label = resultText.fxRate;
+        }
+        return '<div class="cny-compare-rate">' + selectedDate + ' · ' + label + ': 1 ' + selectedCurrency + ' = ' + formatCurrencyAmount(rate, "CNY") + '</div>';
+      }
+
+      function renderCnyCompareResult(startCny, endCny, meta) {
+        const box = $("#resultCnyCompare");
+        if (!box) return;
+        const change = endCny - startCny;
+        const absChange = Math.abs(change);
+        const epsilon = 0.005;
+        const changeType = change > epsilon ? "profit" : change < -epsilon ? "loss" : "flat";
+        const changeLabel = changeType === "profit" ? i18n[currentLang].result.profit : changeType === "loss" ? i18n[currentLang].result.loss : i18n[currentLang].result.flat;
+        const startLabel = i18n[currentLang].result.start + (meta.startEstimated ? "(" + i18n[currentLang].result.estimated + ")" : "");
+        const endLabel = i18n[currentLang].result.end + (meta.endEstimated ? "(" + i18n[currentLang].result.estimated + ")" : "");
+        const startRateLine = buildHistoricalRateLine(meta.startSelectedDate, meta.startRateDate, meta.startRate, meta.startEstimated);
+        const endRateLine = buildHistoricalRateLine(meta.endSelectedDate, meta.endRateDate, meta.endRate, meta.endEstimated);
+        const note = meta.hasFallback ? '<div class="fx-mini-note">' + i18n[currentLang].result.fxFallback + '</div>' : "";
+        box.innerHTML =
+          '<div class="cny-compare-line"><span class="label">' + startLabel + '</span><span>' + formatCurrencyAmount(startCny, "CNY") + '</span></div>' +
+          startRateLine +
+          '<div class="cny-compare-line"><span class="label">' + endLabel + '</span><span>' + formatCurrencyAmount(endCny, "CNY") + '</span></div>' +
+          endRateLine +
+          '<div class="cny-change ' + changeType + '">' + changeLabel + ' ' + formatCurrencyAmount(absChange, "CNY") + '</div>' +
+          note;
+      }
+
+      function updateDateCnyComparison(resultPrincipal, resultInterest) {
+        const startValue = $("#startDate").value;
+        const endValue = $("#endDate").value;
+        fxCompareRequestId += 1;
+        const requestId = fxCompareRequestId;
+
+        if (!startValue || !endValue || !Number.isFinite(resultPrincipal) || !Number.isFinite(resultInterest)) {
+          renderCnyComparePlaceholder();
+          return;
+        }
+
+        renderCnyCompareLoading();
+        Promise.all([
+          fetchHistoricalCurrencyRateToCny(selectedCurrency, startValue),
+          fetchHistoricalCurrencyRateToCny(selectedCurrency, endValue)
+        ]).then(function (records) {
+          if (requestId !== fxCompareRequestId) return;
+          const startRate = records[0].rate;
+          const endRate = records[1].rate;
+          const startCny = resultPrincipal * startRate;
+          const endCny = (resultPrincipal + resultInterest) * endRate;
+          renderCnyCompareResult(startCny, endCny, {
+            startEstimated: records[0].estimated,
+            endEstimated: records[1].estimated,
+            hasFallback: records[0].fallback || records[1].fallback,
+            startRate: startRate,
+            endRate: endRate,
+            startSelectedDate: startValue,
+            endSelectedDate: endValue,
+            startRateDate: records[0].date || startValue,
+            endRateDate: records[1].date || endValue
+          });
+        });
+      }
+
+
+      function fetchJsonWithTimeout(url, timeoutMs) {
+        const controller = new AbortController();
+        const timer = setTimeout(function () {
+          controller.abort();
+        }, timeoutMs || 8000);
+
+        return fetch(url, {
+          cache: "no-store",
+          signal: controller.signal
+        }).then(function (response) {
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+          return response.json();
+        }).finally(function () {
+          clearTimeout(timer);
+        });
+      }
+
+      function invertCnyBaseRates(sourceRates) {
+        const nextRates = { CNY: 1 };
+        ["USD", "TRY", "MXN"].forEach(function (code) {
+          const cnyToCurrency = Number(sourceRates[code]);
+          if (!Number.isFinite(cnyToCurrency) || cnyToCurrency <= 0) {
+            throw new Error("Missing rate: " + code);
+          }
+          nextRates[code] = 1 / cnyToCurrency;
+        });
+        return nextRates;
+      }
+
+      function fetchFromExchangeRateApi() {
+        return fetchJsonWithTimeout("https://open.er-api.com/v6/latest/CNY", 9000).then(function (data) {
+          if (!data || data.result !== "success" || !data.rates) {
+            throw new Error("Invalid ExchangeRate-API response");
+          }
+          return {
+            source: "exchange-rate-api",
+            apiDate: data.time_last_update_utc || data.time_last_update_unix || "",
+            rates: invertCnyBaseRates(data.rates)
+          };
+        });
+      }
+
+      function fetchFromFrankfurter() {
+        return fetchJsonWithTimeout("https://api.frankfurter.dev/v2/rates?base=CNY&quotes=USD,TRY,MXN", 9000).then(function (data) {
+          const parsed = parseFrankfurterRates(data);
+          if (!parsed.rates || !parsed.rates.USD || !parsed.rates.TRY || !parsed.rates.MXN) {
+            throw new Error("Invalid Frankfurter response");
+          }
+          return {
+            source: "frankfurter",
+            apiDate: parsed.date || "",
+            rates: invertCnyBaseRates(parsed.rates)
+          };
+        });
+      }
+
+      function fetchLatestRates() {
+        return fetchFromExchangeRateApi().catch(function () {
+          return fetchFromFrankfurter();
+        });
+      }
+
+      function setRefreshButtonLoading(isLoading) {
+        const button = $("#refreshRatesBtn");
+        if (!button) return;
+        button.disabled = isLoading;
+        button.textContent = isLoading ? i18n[currentLang].currency.refreshing : i18n[currentLang].currency.refresh;
+      }
+
+      function refreshRates(options) {
+        const isManual = options && options.manual;
+        setRefreshButtonLoading(true);
+        setRateStatus("", i18n[currentLang].currency.refreshing);
+
+        return fetchLatestRates().then(function (result) {
+          rates = Object.assign({}, rates, result.rates, { CNY: 1 });
+          const now = new Date().toISOString();
+          saveSettings({
+            updatedAt: now,
+            fetchedAt: now,
+            source: result.source,
+            apiDate: result.apiDate || "",
+            lastError: ""
+          });
+          renderCurrencyUI();
+          resetResults();
+          setRateStatus("success", i18n[currentLang].currency.refreshSuccess(sourceLabel(result.source), formatDateTime(now)));
+          if (isManual) {
+            showMessage("success", i18n[currentLang].currency.refreshSuccess(sourceLabel(result.source), formatDateTime(now)));
+          }
+        }).catch(function () {
+          saveSettings({ lastError: new Date().toISOString() });
+          renderRateStatus();
+          if (isManual) {
+            showMessage("error", i18n[currentLang].currency.refreshFailed);
+          }
+        }).finally(function () {
+          setRefreshButtonLoading(false);
+        });
+      }
+
+      function renderCurrencyUI() {
+        const currencySelect = $("#currencySelect");
+        const selectedRate = $("#selectedRate");
+        if (!currencySelect || !selectedRate) return;
+        rates.CNY = 1;
+        currencySelect.value = selectedCurrency;
+        $("#inlineRatePrefix").textContent = "1 " + selectedCurrency + " =";
+        selectedRate.value = Number(rates[selectedCurrency]).toFixed(selectedCurrency === "CNY" ? 0 : 4).replace(/\.0+$/, "").replace(/(\.\d*?[1-9])0+$/, "$1");
+        selectedRate.disabled = selectedCurrency === "CNY";
+        $$(".rate-input").forEach(function (input) {
+          const code = input.dataset.currency;
+          input.value = Number(rates[code]).toFixed(4).replace(/(\.\d*?[1-9])0+$/, "$1").replace(/\.0+$/, "");
+        });
+        const autoToggle = $("#autoRefreshToggle");
+        if (autoToggle) autoToggle.checked = rateMeta.autoRefresh !== false;
+        renderRateStatus();
+      }
+
+      function updateRate(code, value) {
+        const parsed = Number(value);
+        if (!Number.isFinite(parsed) || parsed <= 0) {
+          showMessage("error", i18n[currentLang].currency.invalidRate);
+          return false;
+        }
+        rates[code] = parsed;
+        rates.CNY = 1;
+        saveSettings({
+          updatedAt: new Date().toISOString(),
+          source: "manual",
+          apiDate: "",
+          lastError: ""
+        });
+        renderCurrencyUI();
+        resetResults();
+        return true;
+      }
+
       function applyTranslations() {
         document.documentElement.lang = i18n[currentLang].htmlLang;
         document.title = i18n[currentLang].pageTitle;
@@ -1101,6 +2082,7 @@
 
         $("#langToggle").textContent = i18n[currentLang].langToggle;
         $("#appVersion").textContent = APP_VERSION;
+        renderCurrencyUI();
         refreshTargetPlaceholder();
       }
 
@@ -1201,9 +2183,11 @@
       }
 
       function resetResults() {
+        fxCompareRequestId += 1;
         $("#resultRate").textContent = "-";
         $("#resultInterest").textContent = "-";
         $("#resultTotal").textContent = "-";
+        renderCnyComparePlaceholder();
       }
 
       function refreshTargetPlaceholder() {
@@ -1252,6 +2236,23 @@
         const termUnit = $("#termUnit").value;
         const baseDays = Number($("#baseDays").value);
         const days = toDays(term, termUnit);
+        if (selectedCurrency !== "CNY") {
+          const inlineRate = Number($("#selectedRate").value);
+          if (Number.isFinite(inlineRate) && inlineRate > 0) {
+            rates[selectedCurrency] = inlineRate;
+            saveSettings({
+              updatedAt: new Date().toISOString(),
+              source: "manual",
+              apiDate: "",
+              lastError: ""
+            });
+            renderRateStatus();
+          }
+        }
+        if (!Number.isFinite(Number(rates[selectedCurrency])) || Number(rates[selectedCurrency]) <= 0) {
+          showMessage("error", i18n[currentLang].currency.invalidRate);
+          return;
+        }
 
         let resultPrincipal = principal;
         let resultDays = days;
@@ -1301,8 +2302,9 @@
         const total = resultPrincipal + resultInterest;
 
         $("#resultRate").textContent = formatRate(resultRatePercent);
-        $("#resultInterest").textContent = formatMoney(resultInterest);
-        $("#resultTotal").textContent = formatMoney(total);
+        $("#resultInterest").innerHTML = formatResultMoneyHtml(resultInterest);
+        $("#resultTotal").innerHTML = formatResultMoneyHtml(total);
+        updateDateCnyComparison(resultPrincipal, resultInterest);
 
         const termText = currentTarget === "term" ? i18n[currentLang].message.termText(formatTerm(fromDays(resultDays, termUnit), termUnit)) : "";
         showMessage("success", i18n[currentLang].message.calculationSuccess(termText));
@@ -1315,6 +2317,38 @@
         resetResults();
         clearMessage();
       }
+
+      $("#currencySelect").addEventListener("change", function () {
+        selectedCurrency = this.value;
+        saveSettings();
+        renderCurrencyUI();
+        resetResults();
+        clearMessage();
+      });
+
+      $("#selectedRate").addEventListener("change", function () {
+        if (selectedCurrency === "CNY") return;
+        updateRate(selectedCurrency, this.value);
+      });
+
+      $$(".rate-input").forEach(function (input) {
+        input.addEventListener("change", function () {
+          updateRate(input.dataset.currency, input.value);
+        });
+      });
+
+      $("#refreshRatesBtn").addEventListener("click", function () {
+        refreshRates({ manual: true });
+      });
+
+      $("#autoRefreshToggle").addEventListener("change", function () {
+        rateMeta.autoRefresh = this.checked;
+        saveSettings({ autoRefresh: this.checked, lastError: "" });
+        renderRateStatus();
+        if (this.checked && shouldAutoRefreshRates()) {
+          refreshRates({ manual: false });
+        }
+      });
 
       $$(".mode-btn").forEach(function (button) {
         button.addEventListener("click", function () {
@@ -1385,9 +2419,13 @@
         });
       });
 
+      loadSettings();
       applyTranslations();
       setTarget("rate");
       clearMessage();
+      if (shouldAutoRefreshRates()) {
+        refreshRates({ manual: false });
+      }
     });
   </script>
 </body>
