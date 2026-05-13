@@ -561,6 +561,38 @@
       line-height: 1.3;
     }
 
+    .cny-annual-rate {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 4px;
+      color: #dbeafe;
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .cny-annual-rate span {
+      margin-bottom: 0;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    .cny-annual-rate .label {
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+
+    .cny-annual-rate .value {
+      color: #e0f2fe;
+      white-space: nowrap;
+    }
+
+    .cny-annual-rate.profit .value { color: #86efac; }
+    .cny-annual-rate.loss .value { color: #fca5a5; }
+    .cny-annual-rate.flat .value { color: #cbd5e1; }
+
     .cny-change {
       margin-top: 5px;
       padding-top: 5px;
@@ -1305,6 +1337,7 @@
 
       .cny-compare-line,
       .cny-change,
+      .cny-annual-rate,
       .cny-compare-rate {
         font-size: 11px;
       }
@@ -1804,6 +1837,12 @@
         line-height: 1.15;
       }
 
+      .cny-annual-rate {
+        margin-top: 2px;
+        font-size: 10px;
+        line-height: 1.15;
+      }
+
       .cny-change {
         margin-top: 3px;
         padding-top: 3px;
@@ -2261,6 +2300,12 @@
         line-height: 1.25;
       }
 
+      .cny-annual-rate {
+        margin-top: 3px;
+        font-size: 11px;
+        line-height: 1.2;
+      }
+
       .cny-change {
         margin-top: 5px;
         padding-top: 5px;
@@ -2637,6 +2682,11 @@
 
       .cny-compare-rate {
         font-size: 9px;
+      }
+
+      .cny-annual-rate {
+        margin-top: 3px;
+        font-size: 10px;
       }
 
       .cny-change {
@@ -3290,7 +3340,7 @@
           <button class="mode-btn" data-target="interest" data-i18n="mode.interest">算利息</button>
           <button class="mode-btn" data-target="principal" data-i18n="mode.principal">求本金</button>
           <button class="mode-btn" data-target="term" data-i18n="mode.term">求期限</button>
-          <span class="mode-version-badge" id="appVersion">v1.8.25</span>
+          <span class="mode-version-badge" id="appVersion">v1.8.26</span>
         </div>
 
 
@@ -3447,7 +3497,7 @@
   <button class="float-lang" id="langToggle" type="button" aria-label="Switch language">EN</button>
 
   <script>
-    const APP_VERSION = "v1.8.25";
+    const APP_VERSION = "v1.8.26";
     const LANG_STORAGE_KEY = "depositCalculatorLang";
     const SETTINGS_STORAGE_KEY = "depositCalculatorSettings";
     const AUTO_REFRESH_INTERVAL_MS = 24 * 60 * 60 * 1000;
@@ -3573,6 +3623,7 @@
             interest: "利息",
             total: "合计",
             cnyCompare: "人民币变化",
+            cnyAnnualRate: "实际人民币年利率",
             start: "开始",
             end: "结束",
             profit: "赚",
@@ -3691,6 +3742,7 @@
             interest: "Interest",
             total: "Total",
             cnyCompare: "CNY Change",
+            cnyAnnualRate: "Actual CNY Annual Rate",
             start: "Start",
             end: "End",
             profit: "Gain",
@@ -4051,17 +4103,24 @@
         const endLabel = i18n[currentLang].result.end + (meta.endEstimated ? "(" + i18n[currentLang].result.estimated + ")" : "");
         const startRateLine = buildHistoricalRateLine(meta.startSelectedDate, meta.startRateDate, meta.startRate, meta.startEstimated);
         const endRateLine = buildHistoricalRateLine(meta.endSelectedDate, meta.endRateDate, meta.endRate, meta.endEstimated);
+        const actualCnyAnnualRate = startCny > 0 && Number.isFinite(meta.termDays) && meta.termDays > 0 && Number.isFinite(meta.baseDays) && meta.baseDays > 0
+          ? change / startCny / meta.termDays * meta.baseDays * 100
+          : null;
+        const annualRateLine = Number.isFinite(actualCnyAnnualRate)
+          ? '<div class="cny-annual-rate ' + changeType + '"><span class="label">' + i18n[currentLang].result.cnyAnnualRate + '</span><span class="value">' + formatPercent2(actualCnyAnnualRate) + '</span></div>'
+          : "";
         const note = meta.hasFallback ? '<div class="fx-mini-note">' + i18n[currentLang].result.fxFallback + '</div>' : "";
         box.innerHTML =
           '<div class="cny-compare-line"><span class="label">' + startLabel + '</span><span>' + formatCurrencyAmount(startCny, "CNY") + '</span></div>' +
           startRateLine +
           '<div class="cny-compare-line"><span class="label">' + endLabel + '</span><span>' + formatCurrencyAmount(endCny, "CNY") + '</span></div>' +
           endRateLine +
+          annualRateLine +
           '<div class="cny-change ' + changeType + '">' + changeLabel + ' ' + formatCurrencyAmount(absChange, "CNY") + '</div>' +
           note;
       }
 
-      function updateDateCnyComparison(resultPrincipal, resultInterest) {
+      function updateDateCnyComparison(resultPrincipal, resultInterest, resultDays, baseDays) {
         const startValue = $("#startDate").value;
         const endValue = $("#endDate").value;
         fxCompareRequestId += 1;
@@ -4091,7 +4150,9 @@
             startSelectedDate: startValue,
             endSelectedDate: endValue,
             startRateDate: records[0].date || startValue,
-            endRateDate: records[1].date || endValue
+            endRateDate: records[1].date || endValue,
+            termDays: resultDays,
+            baseDays: baseDays
           });
         });
       }
@@ -4335,6 +4396,14 @@
         return trimTrailingZeros(value.toFixed(4)) + "%";
       }
 
+      function formatPercent2(value) {
+        if (!Number.isFinite(value)) return "-";
+        return value.toLocaleString(currentLang === "zh" ? "zh-CN" : "en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }) + "%";
+      }
+
       function formatTerm(value, unit) {
         if (!Number.isFinite(value)) return "-";
         const unitText = unit === "day" ? i18n[currentLang].unit.dayFull : unit === "month" ? i18n[currentLang].unit.monthFull : i18n[currentLang].unit.yearFull;
@@ -4487,7 +4556,7 @@
         $("#resultRate").textContent = formatRate(resultRatePercent);
         $("#resultInterest").innerHTML = formatResultMoneyHtml(resultInterest);
         $("#resultTotal").innerHTML = formatResultMoneyHtml(total);
-        updateDateCnyComparison(resultPrincipal, resultInterest);
+        updateDateCnyComparison(resultPrincipal, resultInterest, resultDays, baseDays);
 
         const termText = currentTarget === "term" ? i18n[currentLang].message.termText(formatTerm(fromDays(resultDays, termUnit), termUnit)) : "";
         showMessage("success", i18n[currentLang].message.calculationSuccess(termText));
